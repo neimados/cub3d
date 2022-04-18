@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:35:41 by dso               #+#    #+#             */
-/*   Updated: 2022/04/16 19:21:59 by dso              ###   ########.fr       */
+/*   Updated: 2022/04/18 14:17:01 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,15 @@
 # include <math.h>
 # include <stdio.h>
 
-int			ft_strlen(char *str);
-void		*ft_calloc(size_t count, size_t size);
-char		*get_next_line(int fd);
-char		*ft_read(int fd, char *buffer);
-char		*ft_strchr2(const char *str, int c);
-char		*ft_findnl(char *buffer);
-char		*ft_carry(char *buffer);
-char		*ft_strjoin2(char *s1, char *s2);
-int			ft_error(char *str);
-
 typedef struct s_map
 {
 	char	**map;
-	char	*textures[4];
-	int		sol;
-	int		plafond;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	long	sol;
+	long	plafond;
 }			t_map;
 
 typedef struct s_player
@@ -53,8 +46,33 @@ typedef struct s_struct
 	void		*mlx;
 	void		*win;
 	int			count;
+	int			pos;
+	char		*maptmp;
 	t_map		map;
 	t_player	player;
 }			t_struct;
+
+int			ft_strlen(char *str);
+void		*ft_calloc(size_t count, size_t size);
+char		*get_next_line(int fd);
+char		*ft_read(int fd, char *buffer);
+char		*ft_strchr2(const char *str, int c);
+char		*ft_findnl(char *buffer);
+char		*ft_carry(char *buffer);
+char		*ft_strjoin2(char *s1, char *s2);
+int			ft_error(char *str);
+int			ft_strcmp(char *a, char *b);
+int			ft_isdigit(int c);
+int			ft_iswhitesp(char c);
+char		**ft_split(char *s, char *c);
+char		*ft_strchr(const char *str, int c);
+int			counttab(char **tab);
+char		*ft_strdup(const char *str);
+int			ft_atoi(const char *str);
+int			ft_check_digit(char **tmp2);
+int			ft_error(char *str);
+void		ft_free_tmp(char **tmp);
+int			ft_free_parse(t_struct *game, char **tmp);
+char		*ft_strjoin(char *s1, char *s2);
 
 #endif
