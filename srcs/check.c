@@ -77,7 +77,7 @@ int	ft_check_map_wall(t_struct *game, int i, int j)
 	|| game->map.map[i][j] == 'W'|| game->map.map[i][j] == 'E'
 	|| game->map.map[i][j] == '0')
 	{
-		if (i == counttab(game->map.map) - 1)
+		if (i == counttab(game->map.map) - 1 || i == 0)
 			return (1);
 		if (!game->map.map[i - 1][j] || !game->map.map[i + 1][j]
 		|| !game->map.map[i][j - 1] || !game->map.map[i][j + 1])
