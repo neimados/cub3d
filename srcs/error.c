@@ -53,5 +53,7 @@ int	ft_free_parse(t_struct *game, char **tmp)
 		while (game->map.map[i++])
 			free(game->map.map[i]);
 	}
+	if (game->maptmp)
+		free(game->maptmp);
 	return (1);
 }

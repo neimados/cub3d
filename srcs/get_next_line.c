@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-char	*ft_read(int fd, char *carry)
+static char	*ft_read(int fd, char *carry)
 {
 	int		i;
 	char	*tmp;
@@ -38,7 +38,7 @@ char	*ft_read(int fd, char *carry)
 	return (carry);
 }
 
-char	*ft_findnl(char *carry)
+static char	*ft_findnl(char *carry)
 {
 	int		i;
 	char	*str;
@@ -48,7 +48,10 @@ char	*ft_findnl(char *carry)
 		return (NULL);
 	while (carry[i] && carry[i] != '\n')
 		i++;
-	str = ft_calloc((i + 1), sizeof(char));
+	if (carry[i] == '\n')
+		str = ft_calloc((i + 2), sizeof(char));
+	else
+		str = ft_calloc((i + 1), sizeof(char));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -57,10 +60,12 @@ char	*ft_findnl(char *carry)
 		str[i] = carry[i];
 		i++;
 	}
+	if (carry[i] == '\n')
+		str[i] = '\n';
 	return (str);
 }
 
-char	*ft_carry(char *carry)
+static char	*ft_carry(char *carry)
 {
 	char	*next;
 	int		i;

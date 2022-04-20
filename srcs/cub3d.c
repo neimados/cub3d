@@ -20,38 +20,24 @@ t_struct	ft_init_struct(void)
 	new.win = NULL;
 	new.count = 0;
 	new.pos = 0;
+	new.maptmp = NULL;
 	new.map.map = NULL;
 	new.map.no = NULL;
 	new.map.so = NULL;
 	new.map.we = NULL;
 	new.map.ea = NULL;
-	new.map.sol = -1;
-	new.map.plafond = -1;
+	new.map.f = -1;
+	new.map.c = -1;
 	return (new);
-}
-
-int	ft_check_map_ext(char *filename)
-{
-	int	i;
-
-	i = ft_strlen(filename);
-	if (i < 5)
-		return (1);
-	if (filename[i - 1] != 'b' || filename[i - 2] != 'u'
-		|| filename[i - 3] != 'c' || filename[i - 4] != '.')
-		return (1);
-	return (0);
 }
 
 long	ft_color_calc(char *tmp)
 {
 	char	**tmp2;
-	int	i;
 	int	r;
 	int	g;
 	int	b;
-	
-	i = 0;
+
 	tmp2 = ft_split(tmp, " \t\n\v\f\r,");
 	if (!tmp2 || counttab(tmp2) != 3)
 	{
@@ -65,45 +51,8 @@ long	ft_color_calc(char *tmp)
 	b = ft_atoi(tmp2[2]);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (-1);
+	ft_free_tmp(tmp2);
 	return ((r * 256 * 256) + (g * 256) + b);
-}
-
-int	ft_check_conf(t_struct *game)
-{
-	if (game->map.plafond == -1 || game->map.sol == -1)
-		return (1);
-	if (!game->map.no || !game->map.so || !game->map.we || !game->map.ea)
-		return (1);
-	return (0);
-}
-
-int	ft_check_duplicate(t_struct *game, char **tmp)
-{
-	if (!ft_strcmp(tmp[0], "NO"))
-	{
-		if (game->map.no)
-			return (1);
-		game->map.no = ft_strdup(tmp[1]);
-	}
-	else if (!ft_strcmp(tmp[0], "SO"))
-	{
-		if (game->map.so)
-			return (1);
-		game->map.so = ft_strdup(tmp[1]);
-	}
-	else if (!ft_strcmp(tmp[0], "WE"))
-	{
-		if (game->map.we)
-			return (1);
-		game->map.we = ft_strdup(tmp[1]);
-	}
-	else if (!ft_strcmp(tmp[0], "EA"))
-	{
-		if (game->map.ea)
-			return (1);
-		game->map.ea = ft_strdup(tmp[1]);
-	}
-	return (0);
 }
 
 int	ft_fillconf(t_struct *game, char **tmp)
@@ -116,22 +65,22 @@ int	ft_fillconf(t_struct *game, char **tmp)
 	}
 	else if (!ft_strcmp(tmp[0], "F"))
 	{
-		if (game->map.sol != -1)
+		if (game->map.f != -1)
 			return (1);
-		game->map.sol = ft_color_calc(tmp[1]);
-		if (game->map.sol == -1)
+		game->map.f = ft_color_calc(tmp[1]);
+		if (game->map.f == -1)
 			return (1);
 	}
 	else if (!ft_strcmp(tmp[0], "C"))
 	{
-		if (game->map.plafond != -1)
+		if (game->map.c != -1)
 			return (1);
-		game->map.plafond = ft_color_calc(tmp[1]);
-		if (game->map.plafond == -1)
+		game->map.c = ft_color_calc(tmp[1]);
+		if (game->map.c == -1)
 			return (1);
 	}
 	ft_free_tmp(tmp);
-	return (ft_check_conf(game));
+	return (0);
 }
 
 int	ft_parse(char *str, t_struct *game)
@@ -140,6 +89,7 @@ int	ft_parse(char *str, t_struct *game)
 	char	**tmp;
 
 	i = 0;
+	tmp = NULL;
 	if (game->count != 6)
 	{
 		while (str[i] && (ft_iswhitesp(str[i]) == 1 || str[i] == ' '))
@@ -159,16 +109,20 @@ int	ft_parse(char *str, t_struct *game)
 	{
 		while (str[i])
 		{
-			if (ft_iswhitesp(str[i]) == 1 && !game->map.map)
-				return (1);
+			if (game->pos != 0)
+				if (ft_iswhitesp(str[0]) == 1)
+					str[0] = 'x';
 			if (str[i] == '1' || str[i] == '0' || str[i] == 'N'
 			|| str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
-			{
-				ft_strjoin(game->maptmp, str);
-				ft_strjoin(game->maptmp, "\n");
-				return (0);
-			}
+				game->pos = 1;
 			i++;
+		}
+		if (game->pos != 0)
+		{
+			game->maptmp = ft_strjoin(game->maptmp, str);
+			if (!game->maptmp)
+				return (ft_free_parse(game, tmp));
+			return (0);
 		}
 	}
 	return (0);
@@ -195,6 +149,8 @@ int	ft_gnl(char *av, t_struct *game)
 		free(str);
 		str = get_next_line(fd);
 	}
+	game->map.map = ft_split(game->maptmp, "\n");
+	free(game->maptmp);
 	return (0);
 }
 
@@ -202,22 +158,31 @@ int	main(int argc, char **argv)
 {
 	t_struct	game;
 	
-	if (argc != 1)
+	if (argc != 2)
 		return (ft_error("Error\nMap Error\n"));
 	if (ft_check_map_ext(argv[1]) == 1)
 		return (ft_error("Error\nIncorrect map extension\n"));
-	if (ft_gnl(argv[1], &game) == 1)
-		return (ft_error("Error\nIncorrect map\n"));
 	game = ft_init_struct();
+	if (ft_gnl(argv[1], &game) == 1)
+		return (ft_error("Error\nFile incorrect\n"));
+	if (ft_check_conf(&game) == 1)
+		return (ft_error("Error\nIncorrect map configuration\n"));
+	if (ft_check_map(&game) == 1)
+		return (ft_error("Error\nMap is not valid\n"));
 	
-	// int	i = 0;
-	// argc = 0;
-	// (void)argv;
-	// while (game.map.textures[i])
-	// {
-	// 	printf("TEST %s\n", game.map.textures[i]);
-	// 	i++;
-	// }
+
+	printf("NO %s\n", game.map.no);
+	printf("SO %s\n", game.map.so);
+	printf("WE %s\n", game.map.we);
+	printf("EA %s\n", game.map.ea);
+	printf("F %ld\n", game.map.f);
+	printf("C %ld\n", game.map.c);
+	int	i = 0;
+	while (game.map.map[i])
+	{
+		printf("MAP %s\n", game.map.map[i]);
+		i++;
+	}
 	
 
 	return(0);

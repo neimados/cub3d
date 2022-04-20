@@ -30,8 +30,8 @@ typedef struct s_map
 	char	*so;
 	char	*we;
 	char	*ea;
-	long	sol;
-	long	plafond;
+	long	f;
+	long	c;
 }			t_map;
 
 typedef struct s_player
@@ -55,10 +55,7 @@ typedef struct s_struct
 int			ft_strlen(char *str);
 void		*ft_calloc(size_t count, size_t size);
 char		*get_next_line(int fd);
-char		*ft_read(int fd, char *buffer);
 char		*ft_strchr2(const char *str, int c);
-char		*ft_findnl(char *buffer);
-char		*ft_carry(char *buffer);
 char		*ft_strjoin2(char *s1, char *s2);
 int			ft_error(char *str);
 int			ft_strcmp(char *a, char *b);
@@ -74,5 +71,9 @@ int			ft_error(char *str);
 void		ft_free_tmp(char **tmp);
 int			ft_free_parse(t_struct *game, char **tmp);
 char		*ft_strjoin(char *s1, char *s2);
+int			ft_check_map_ext(char *filename);
+int			ft_check_conf(t_struct *game);
+int			ft_check_duplicate(t_struct *game, char **tmp);
+int			ft_check_map(t_struct *game);
 
 #endif
