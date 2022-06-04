@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:35:41 by dso               #+#    #+#             */
-/*   Updated: 2022/04/18 14:17:01 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/04 11:52:43 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void		*ft_calloc(size_t count, size_t size);
 char		*get_next_line(int fd);
 char		*ft_strchr2(const char *str, int c);
 char		*ft_strjoin2(char *s1, char *s2);
-int			ft_error(char *str);
 int			ft_strcmp(char *a, char *b);
 int			ft_isdigit(int c);
 int			ft_iswhitesp(char c);

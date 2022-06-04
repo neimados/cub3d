@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 13:14:47 by dso               #+#    #+#             */
-/*   Updated: 2022/04/18 13:16:16 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/04 11:54:51 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	ft_free_parse(t_struct *game, char **tmp)
 		free(game->map.ea);
 	if (game->map.map)
 	{
-		i = 0;
-		while (game->map.map[i++])
+		i = -1;
+		while (game->map.map[++i])
 			free(game->map.map[i]);
 	}
 	if (game->maptmp)

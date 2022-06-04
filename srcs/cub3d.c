@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:42:43 by dso               #+#    #+#             */
-/*   Updated: 2022/04/18 15:59:19 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/04 11:53:01 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_struct	ft_init_struct(void)
 	new.map.ea = NULL;
 	new.map.f = -1;
 	new.map.c = -1;
+	new.player.x = 0;
+	new.player.y = 0;
 	return (new);
 }
 
@@ -151,39 +153,73 @@ int	ft_gnl(char *av, t_struct *game)
 	}
 	game->map.map = ft_split(game->maptmp, "\n");
 	free(game->maptmp);
+	if (!game->map.map)
+		return (1);
 	return (0);
+}
+
+void	player_pos(t_struct *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map.map[i])
+	{
+		j = 0;
+		while (game->map.map[i][j])
+		{
+			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S'
+			|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'W')
+			{
+				printf("POSITION %c \n", game->map.map[i][j]);
+				game->player.x = j;
+				game->player.y = i;
+				game->player.direction = game->map.map[i][j];
+				game->map.map[i][j] = '0';
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_struct	game;
 	
+	game = ft_init_struct();
 	if (argc != 2)
 		return (ft_error("Error\nMap Error\n"));
 	if (ft_check_map_ext(argv[1]) == 1)
 		return (ft_error("Error\nIncorrect map extension\n"));
-	game = ft_init_struct();
 	if (ft_gnl(argv[1], &game) == 1)
 		return (ft_error("Error\nFile incorrect\n"));
 	if (ft_check_conf(&game) == 1)
 		return (ft_error("Error\nIncorrect map configuration\n"));
 	if (ft_check_map(&game) == 1)
 		return (ft_error("Error\nMap is not valid\n"));
+	player_pos(&game);
 	
-
+//TEST BEGIN
 	printf("NO %s\n", game.map.no);
 	printf("SO %s\n", game.map.so);
 	printf("WE %s\n", game.map.we);
 	printf("EA %s\n", game.map.ea);
 	printf("F %ld\n", game.map.f);
 	printf("C %ld\n", game.map.c);
+	
+	printf("PLAYER X %d\n", game.player.x);
+	printf("PLAYER Y %d\n", game.player.y);
+	printf("DIRECTION %c\n", game.player.direction);
+	
 	int	i = 0;
 	while (game.map.map[i])
 	{
 		printf("MAP %s\n", game.map.map[i]);
 		i++;
 	}
-	
+//TEST END
 
 	return(0);
 }
