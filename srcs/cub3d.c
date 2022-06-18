@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:42:43 by dso               #+#    #+#             */
-/*   Updated: 2022/06/04 11:53:01 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/18 11:36:21 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,23 @@ t_struct	ft_init_struct(void)
 	return (new);
 }
 
-long	ft_color_calc(char *tmp)
+long	ft_color_calc(char **tmp)
 {
+	char	*tmp3;
 	char	**tmp2;
 	int	r;
 	int	g;
 	int	b;
+	int	i;
 
-	tmp2 = ft_split(tmp, " \t\n\v\f\r,");
+	i = 1;
+	tmp3 = ft_calloc(1, sizeof(char));
+	while (tmp[i])
+	{
+		tmp3 = ft_strjoin2(tmp3, tmp[i]);
+		i++;
+	}
+	tmp2 = ft_split(tmp3, " \t\n\v\f\r,");
 	if (!tmp2 || counttab(tmp2) != 3)
 	{
 		ft_free_tmp(tmp2);
@@ -55,6 +64,7 @@ long	ft_color_calc(char *tmp)
 		return (-1);
 	ft_free_tmp(tmp2);
 	return ((r * 256 * 256) + (g * 256) + b);
+	//return (t << 24 | r << 16 | g << 8 | b);
 }
 
 int	ft_fillconf(t_struct *game, char **tmp)
@@ -62,6 +72,8 @@ int	ft_fillconf(t_struct *game, char **tmp)
 	if (!ft_strcmp(tmp[0], "NO") || !ft_strcmp(tmp[0], "SO")
 	|| !ft_strcmp(tmp[0], "WE") || !ft_strcmp(tmp[0], "EA"))
 	{
+		if (counttab(tmp) != 2)
+			return (1);
 		if (ft_check_duplicate(game, tmp) == 1)
 			return (1);
 	}
@@ -69,7 +81,7 @@ int	ft_fillconf(t_struct *game, char **tmp)
 	{
 		if (game->map.f != -1)
 			return (1);
-		game->map.f = ft_color_calc(tmp[1]);
+		game->map.f = ft_color_calc(tmp);
 		if (game->map.f == -1)
 			return (1);
 	}
@@ -77,7 +89,7 @@ int	ft_fillconf(t_struct *game, char **tmp)
 	{
 		if (game->map.c != -1)
 			return (1);
-		game->map.c = ft_color_calc(tmp[1]);
+		game->map.c = ft_color_calc(tmp);
 		if (game->map.c == -1)
 			return (1);
 	}
@@ -100,7 +112,7 @@ int	ft_parse(char *str, t_struct *game)
 		{
 			game->count += 1;
 			tmp = ft_split(str, " \t\n\v\f\r");
-			if (!tmp || counttab(tmp) != 2)
+			if (!tmp)
 				return (ft_free_parse(game, tmp));
 			if (ft_fillconf(game, tmp) == 1)
 				return (ft_free_parse(game, tmp));
@@ -172,7 +184,6 @@ void	player_pos(t_struct *game)
 			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S'
 			|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'W')
 			{
-				printf("POSITION %c \n", game->map.map[i][j]);
 				game->player.x = j;
 				game->player.y = i;
 				game->player.direction = game->map.map[i][j];
