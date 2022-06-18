@@ -11,7 +11,7 @@ EA ./path_to_the_east_texture
 
 
 
-F   			 220,      100,					150
+F   			 220,     100			,		150                   
 
 
 C 225,30,0

@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:11:19 by dso               #+#    #+#             */
-/*   Updated: 2022/06/04 10:59:49 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/18 16:29:54 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,23 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
+t_struct	ft_init_struct(void)
+{
+	t_struct	new;
 
+	new.mlx = NULL;
+	new.win = NULL;
+	new.count = 0;
+	new.pos = 0;
+	new.maptmp = NULL;
+	new.map.map = NULL;
+	new.map.no = NULL;
+	new.map.so = NULL;
+	new.map.we = NULL;
+	new.map.ea = NULL;
+	new.map.f = -1;
+	new.map.c = -1;
+	new.player.x = 0;
+	new.player.y = 0;
+	return (new);
+}
