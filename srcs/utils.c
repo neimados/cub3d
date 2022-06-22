@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 13:03:22 by dso               #+#    #+#             */
-/*   Updated: 2022/04/18 13:13:25 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/18 16:25:42 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_strcmp(char *a, char *b)
 	return (diff);
 }
 
-int		ft_iswhitesp(char c)
+int	ft_iswhitesp(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
 		return (1);
