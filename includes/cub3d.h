@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:35:41 by dso               #+#    #+#             */
-/*   Updated: 2022/06/18 17:04:05 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/22 15:50:26 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 # define BUFFER_SIZE 1
+# define UP 13
+# define DOWN 1
+# define LEFT 0
+# define RIGHT 2
+# define ESCAPE 53
+
+# define MAP_WIDTH 1000
+# define MAP_HEIGHT 800
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -23,6 +31,16 @@
 # include <math.h>
 # include <stdio.h>
 
+typedef struct s_img {
+	void	*ping;
+	void	*min_wall;
+	void	*min_floor;
+	void	*north_texture;
+	void	*south_texturerefer;
+	void	*west_texture;
+	void	*east_texture;
+}				t_img;
+
 typedef struct s_map
 {
 	char	**map;
@@ -32,12 +50,17 @@ typedef struct s_map
 	char	*ea;
 	long	f;
 	long	c;
+	void	*mlx;
+	void	*win;
+	t_img	*img;
 }			t_map;
 
 typedef struct s_player
 {
 	int		x;
 	int		y;
+	int		dir_x;
+	int		dir_y;
 	char	direction;
 }			t_player;
 
@@ -81,5 +104,13 @@ int			ft_gnl(char *av, t_struct *game);
 int			ft_error_gnl(char *str);
 long		ft_color_calc(char **tmp);
 int			ft_parse(char *str, t_struct *game);
+
+
+void	ft_fill_img(t_struct *game);
+int		key_hook(int keycode, t_struct *game);
+void	ft_exit_prog(t_struct *game, char *str);
+int		ft_abort_prog(t_struct *game);
+t_img	*ft_init_img(void);
+void	ft_put_minimap(t_struct *game);
 
 #endif

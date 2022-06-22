@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:11:19 by dso               #+#    #+#             */
-/*   Updated: 2022/06/18 16:29:54 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/22 14:42:12 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ t_struct	ft_init_struct(void)
 	new.map.c = -1;
 	new.player.x = 0;
 	new.player.y = 0;
+	new.player.dir_x = 0;
+	new.player.dir_y = 0;
 	return (new);
 }

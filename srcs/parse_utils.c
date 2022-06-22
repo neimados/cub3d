@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:32:36 by dso               #+#    #+#             */
-/*   Updated: 2022/06/18 17:06:14 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/22 14:45:38 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ void	player_pos(t_struct *game)
 		}
 		i++;
 	}
+	if (game->player.direction == 'N')
+		game->player.dir_y = -1;
+	if (game->player.direction == 'S')
+		game->player.dir_y = 1;
+	if (game->player.direction == 'E')
+		game->player.dir_x = -1;
+	if (game->player.direction == 'W')
+		game->player.dir_x = -1;
 }
 
 int	ft_gnl(char *av, t_struct *game)

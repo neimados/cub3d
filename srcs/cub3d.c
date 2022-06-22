@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:42:43 by dso               #+#    #+#             */
-/*   Updated: 2022/06/18 17:03:32 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/22 15:50:39 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static void start_game(t_struct	*game)
+{
+	game->map.mlx = mlx_init();
+	game->map.win = mlx_new_window(game->map.mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
+	game->map.img = ft_init_img();
+	ft_fill_img(game);
+	ft_put_minimap(game);
+	mlx_key_hook(game->map.win, key_hook, game);
+	mlx_hook(game->map.win, 17, 1L << 17, ft_abort_prog, game);
+	mlx_loop(game->map.mlx);
+}
 
 int	main(int argc, char **argv)
 {
@@ -28,7 +40,9 @@ int	main(int argc, char **argv)
 	if (ft_check_map(&game) == 1)
 		return (ft_error("Error\nMap is not valid\n"));
 	player_pos(&game);
-
+	start_game(&game);
+	
+/*
 //TEST BEGIN
 	printf("NO %s\n", game.map.no);
 	printf("SO %s\n", game.map.so);
@@ -48,6 +62,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 //TEST END
+*/
 
 	return (0);
 }
