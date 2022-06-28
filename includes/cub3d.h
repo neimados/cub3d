@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:24:04 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 12:28:11 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:29:14 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,11 @@ long		ft_color_calc(char **tmp);
 int			ft_parse(char *str, t_struct *game);
 int			ft_free_struct(t_struct *game);
 
-int		ft_get_keys(t_struct *game);
-int		ft_key_release(int keycode, t_struct *game);
-int		ft_key_press(int keycode, t_struct *game);
-void	ft_exit_prog(t_struct *game, char *str);
-int		ft_abort_prog(t_struct *game);
-void	ft_put_minimap(t_struct *game);
+int			ft_get_keys(t_struct *game);
+int			ft_key_release(int keycode, t_struct *game);
+int			ft_key_press(int keycode, t_struct *game);
+void		ft_exit_prog(t_struct *game, char *str);
+int			ft_abort_prog(t_struct *game);
+void		ft_put_minimap(t_struct *game);
 
 #endif
