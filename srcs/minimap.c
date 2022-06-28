@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:33:58 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 15:33:59 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:56:05 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,20 @@ void	ft_put_minimap(t_struct *game)
 	game->minimap->bits_per_pixel = 0;
 	game->minimap->line_length = 0;
 	game->minimap->endian = 0;
-	game->minimap->img = mlx_new_image(game->mlx, 200, 200);
+	game->minimap->img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
 	game->minimap->addr = mlx_get_data_addr(
 		game->minimap->img,
 		&game->minimap->bits_per_pixel,
 		&game->minimap->line_length,
 		&game->minimap->endian);
-	my_mlx_pixel_put(game->minimap, 5, 5, 0x00FF0000);
-	my_mlx_pixel_put(game->minimap, 10, 10, 0x00FF0000);
-	my_mlx_pixel_put(game->minimap, 11, 11, 0x00FF0000);
-	mlx_put_image_to_window(game->mlx, game->win, game->minimap->img, 0, 0);
+	int i = -1;
+	int j = -1;
+	while (++i < MINIMAP_W)
+	{
+		// printf(">> %d\n", MINIMAP_W);
+		while (++j < MINIMAP_H)
+			my_mlx_pixel_put(game->minimap, i, j, 0x00FF0000);
+		j = -1;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->minimap->img, (MAP_WIDTH - 120), 0);
 }
