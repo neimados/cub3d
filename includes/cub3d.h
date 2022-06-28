@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:35:41 by dso               #+#    #+#             */
-/*   Updated: 2022/06/22 15:50:26 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 09:48:42 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define LEFT 0
 # define RIGHT 2
 # define ESCAPE 53
+# define TURN_RIGHT 124
+# define TURN_LEFT 123
 
 # define MAP_WIDTH 1000
 # define MAP_HEIGHT 800
@@ -106,11 +108,11 @@ long		ft_color_calc(char **tmp);
 int			ft_parse(char *str, t_struct *game);
 
 
-void	ft_fill_img(t_struct *game);
+// void	ft_fill_img(t_struct *game);
 int		key_hook(int keycode, t_struct *game);
 void	ft_exit_prog(t_struct *game, char *str);
 int		ft_abort_prog(t_struct *game);
-t_img	*ft_init_img(void);
+// t_img	*ft_init_img(void);
 void	ft_put_minimap(t_struct *game);
 
 #endif
