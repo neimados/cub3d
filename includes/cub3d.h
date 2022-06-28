@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:24:04 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 12:24:33 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/28 12:28:11 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define TURN_RIGHT 124
 # define TURN_LEFT 123
 
-# define MAP_WIDTH 1920
-# define MAP_HEIGHT 1080
+# define MAP_WIDTH 1000
+# define MAP_HEIGHT 800
 
 # include <unistd.h>
 # include <stdlib.h>
