@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:35:41 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 09:48:42 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 10:52:17 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,6 @@
 # include <math.h>
 # include <stdio.h>
 
-typedef struct s_img {
-	void	*ping;
-	void	*min_wall;
-	void	*min_floor;
-	void	*north_texture;
-	void	*south_texturerefer;
-	void	*west_texture;
-	void	*east_texture;
-}				t_img;
-
 typedef struct s_map
 {
 	char	**map;
@@ -54,7 +44,6 @@ typedef struct s_map
 	long	c;
 	void	*mlx;
 	void	*win;
-	t_img	*img;
 }			t_map;
 
 typedef struct s_player
@@ -68,6 +57,13 @@ typedef struct s_player
 
 typedef struct s_struct
 {
+	int			time;
+	int			key_up;
+	int			key_down;
+	int			key_right;
+	int			key_left;
+	int			key_turn_left;
+	int			key_turn_right;
 	void		*mlx;
 	void		*win;
 	int			count;
@@ -107,12 +103,11 @@ int			ft_error_gnl(char *str);
 long		ft_color_calc(char **tmp);
 int			ft_parse(char *str, t_struct *game);
 
-
-// void	ft_fill_img(t_struct *game);
-int		key_hook(int keycode, t_struct *game);
+int		ft_get_keys(t_struct *game);
+int		ft_key_release(int keycode, t_struct *game);
+int		ft_key_press(int keycode, t_struct *game);
 void	ft_exit_prog(t_struct *game, char *str);
 int		ft_abort_prog(t_struct *game);
-// t_img	*ft_init_img(void);
 void	ft_put_minimap(t_struct *game);
 
 #endif

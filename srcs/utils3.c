@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:11:19 by dso               #+#    #+#             */
-/*   Updated: 2022/06/22 14:42:12 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 10:52:16 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ t_struct	ft_init_struct(void)
 {
 	t_struct	new;
 
+	new.time = 0;
+	new.key_up = 0;
+	new.key_down = 0;
+	new.key_right = 0;
+	new.key_left = 0;
+	new.key_turn_left = 0;
+	new.key_turn_left = 0;
 	new.mlx = NULL;
 	new.win = NULL;
 	new.count = 0;
