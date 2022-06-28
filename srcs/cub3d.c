@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 12:46:37 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 13:16:48 by dvergobb         ###   ########.fr       */
+/*   Created: 2022/06/28 15:34:05 by dvergobb          #+#    #+#             */
+/*   Updated: 2022/06/28 15:34:10 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	main(int argc, char **argv)
 	if (ft_check_map(&game) == 1)
 		return (ft_error("Error\nMap is not valid\n"));
 	player_pos(&game, -1, -1);
+	if (game.player.x == 0 || game.player.y == 0)
+		return (ft_free_struct(&game));
 	start_game(&game);
 	
 /*

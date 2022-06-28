@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:32:36 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 12:33:18 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/28 12:54:54 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,54 @@ int	ft_gnl(char *av, t_struct *game)
 	if (!game->map.map)
 		return (1);
 	return (0);
+}
+
+static char	**ft_color_calc_split(char **tmp)
+{
+	char	*tmp3;
+	char	**tmp2;
+	int		i;
+
+	i = 1;
+	tmp3 = ft_calloc(1, sizeof(char));
+	while (tmp[i])
+	{
+		tmp3 = ft_strjoin2(tmp3, tmp[i]);
+		i++;
+	}
+	if (ft_check_color(tmp3) == 1)
+	{
+		free(tmp3);
+		return (NULL);
+	}
+	tmp2 = ft_split(tmp3, " \t\n\v\f\r,");
+	free(tmp3);
+	return (tmp2);
+}
+
+long	ft_color_calc(char **tmp)
+{
+	char	**tmp2;
+	int		r;
+	int		g;
+	int		b;
+
+	tmp2 = ft_color_calc_split(tmp);
+	if (!tmp2 || counttab(tmp2) != 3)
+	{
+		ft_free_tmp(tmp2);
+		return (-1);
+	}
+	if (ft_check_digit(tmp2) == 1)
+	{
+		ft_free_tmp(tmp2);
+		return (-1);
+	}
+	r = ft_atoi(tmp2[0]);
+	g = ft_atoi(tmp2[1]);
+	b = ft_atoi(tmp2[2]);
+	ft_free_tmp(tmp2);
+	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
+		return (-1);
+	return ((r * 256 * 256) + (g * 256) + b);
 }
