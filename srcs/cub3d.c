@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:46:37 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 12:46:40 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:16:48 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void start_game(t_struct *game)
 {
-	game->map.mlx = mlx_init();
-	game->map.win = mlx_new_window(game->map.mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
 	ft_put_minimap(game);
-	mlx_loop_hook(game->map.mlx, ft_get_keys, game);
-	mlx_hook(game->map.win, 17, 1L << 17, ft_abort_prog, game);
-	mlx_hook(game->map.win, 2, 1L << 0, ft_key_press, game);
-	mlx_hook(game->map.win, 3, 1L << 1, ft_key_release, game);
-	mlx_loop(game->map.mlx);
+	mlx_loop_hook(game->mlx, ft_get_keys, game);
+	mlx_hook(game->win, 17, 1L << 17, ft_abort_prog, game);
+	mlx_hook(game->win, 2, 1L << 0, ft_key_press, game);
+	mlx_hook(game->win, 3, 1L << 1, ft_key_release, game);
+	mlx_loop(game->mlx);
 }
 
 int	main(int argc, char **argv)

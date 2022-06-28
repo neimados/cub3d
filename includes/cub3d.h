@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:46:49 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 12:46:51 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:16:54 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ typedef struct s_map
 	char	*ea;
 	long	f;
 	long	c;
-	void	*mlx;
-	void	*win;
 }			t_map;
 
 typedef struct s_player
@@ -78,7 +76,7 @@ typedef struct s_struct
 	int			pos;
 	char		*maptmp;
 	t_map		map;
-	t_data		minimap;
+	t_data		*minimap;
 	t_player	player;
 }			t_struct;
 
