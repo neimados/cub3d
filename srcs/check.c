@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:42:43 by dso               #+#    #+#             */
-/*   Updated: 2022/06/18 17:00:03 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/28 10:11:37 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,10 @@ int	ft_check_map(t_struct *game)
 			|| game->map.map[i][j] == 'E')
 			{
 				if (ft_check_map_wall(game, i, j) == 1)
-					return (1);
+					return (ft_free_struct(game));
 			}
 			else
-				return (1);
+				return (ft_free_struct(game));
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:32:36 by dso               #+#    #+#             */
-/*   Updated: 2022/06/18 17:11:07 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/28 12:22:08 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ long	ft_color_calc(char **tmp)
 		return (-1);
 	}
 	if (ft_check_digit(tmp2) == 1)
+	{
+		ft_free_tmp(tmp2);
 		return (-1);
+	}
 	r = ft_atoi(tmp2[0]);
 	g = ft_atoi(tmp2[1]);
 	b = ft_atoi(tmp2[2]);
+	ft_free_tmp(tmp2);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (-1);
-	ft_free_tmp(tmp2);
 	return ((r * 256 * 256) + (g * 256) + b);
-	//return (t << 24 | r << 16 | g << 8 | b);
 }
 
 int	ft_fillconf(t_struct *game, char **tmp)

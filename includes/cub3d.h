@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:35:41 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 09:48:42 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:16:54 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define TURN_RIGHT 124
 # define TURN_LEFT 123
 
-# define MAP_WIDTH 1000
-# define MAP_HEIGHT 800
+# define MAP_WIDTH 1920
+# define MAP_HEIGHT 1080
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -106,6 +106,7 @@ int			ft_gnl(char *av, t_struct *game);
 int			ft_error_gnl(char *str);
 long		ft_color_calc(char **tmp);
 int			ft_parse(char *str, t_struct *game);
+int			ft_free_struct(t_struct *game);
 
 
 // void	ft_fill_img(t_struct *game);
