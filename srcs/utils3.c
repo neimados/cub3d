@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:11:19 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 10:52:16 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:32:02 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ t_struct	ft_init_struct(void)
 	new.key_left = 0;
 	new.key_turn_left = 0;
 	new.key_turn_left = 0;
-	new.mlx = NULL;
-	new.win = NULL;
 	new.count = 0;
 	new.pos = 0;
 	new.maptmp = NULL;

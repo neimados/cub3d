@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:24:04 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 12:29:14 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:33:35 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int			ft_check_duplicate(t_struct *game, char **tmp);
 int			ft_check_map(t_struct *game);
 int			ft_check_color(char *tmp);
 t_struct	ft_init_struct(void);
-void		player_pos(t_struct *game);
+void		player_pos(t_struct *game, int i, int j);
 int			ft_gnl(char *av, t_struct *game);
 int			ft_error_gnl(char *str);
 long		ft_color_calc(char **tmp);
