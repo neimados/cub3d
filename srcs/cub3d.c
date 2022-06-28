@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 12:24:13 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 12:38:15 by dvergobb         ###   ########.fr       */
+/*   Created: 2022/06/28 12:46:37 by dvergobb          #+#    #+#             */
+/*   Updated: 2022/06/28 12:46:40 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 		return (ft_error("Error\nIncorrect map configuration\n"));
 	if (ft_check_map(&game) == 1)
 		return (ft_error("Error\nMap is not valid\n"));
-	player_pos(&game);
+	player_pos(&game, -1, -1);
 	start_game(&game);
 	
 /*

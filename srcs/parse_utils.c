@@ -6,22 +6,18 @@
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:32:36 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 10:54:31 by dso              ###   ########.fr       */
+/*   Updated: 2022/06/28 12:33:18 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	player_pos(t_struct *game)
+void	player_pos(t_struct *game, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map.map[i])
+	while (game->map.map[++i])
 	{
-		j = 0;
-		while (game->map.map[i][j])
+		j = -1;
+		while (game->map.map[i][++j])
 		{
 			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S'
 			|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'W')
@@ -31,9 +27,7 @@ void	player_pos(t_struct *game)
 				game->player.direction = game->map.map[i][j];
 				game->map.map[i][j] = '0';
 			}
-			j++;
 		}
-		i++;
 	}
 	if (game->player.direction == 'N')
 		game->player.dir_y = -1;
