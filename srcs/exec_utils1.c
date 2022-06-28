@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:56:26 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 13:13:30 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:03:31 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	ft_get_keys(t_struct *game)
 		if (game->key_left == 1)
 			printf("Go left\n");
 		game->time = 0;
+		ft_put_minimap(game);
 	}
 	return (1);
 }

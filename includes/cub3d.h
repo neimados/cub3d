@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:46:49 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 15:51:19 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:04:57 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@
 
 # define MAP_WIDTH 1000
 # define MAP_HEIGHT 800
-// # define MINIMAP_W (MAP_WIDTH * 0.2)
-// # define MINIMAP_H (MAP_HEIGHT * 0.2)
-
-# define MINIMAP_W 120
-# define MINIMAP_H 100
+# define MINIMAP_W (MAP_WIDTH * 0.18)
+# define MINIMAP_H (MAP_HEIGHT * 0.18)
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -61,8 +58,6 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	int		dir_x;
-	int		dir_y;
 	char	direction;
 }			t_player;
 

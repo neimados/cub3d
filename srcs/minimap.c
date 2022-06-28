@@ -6,11 +6,16 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:33:58 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 15:58:14 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:05:37 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static void ft_rectangle()
+{
+	
+}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -22,6 +27,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void	ft_put_minimap(t_struct *game)
 {
+	printf("> Coucou, map reload\n");
 	game->minimap = malloc(sizeof(t_data));
 	game->minimap->img = NULL;
 	game->minimap->addr = NULL;
@@ -38,7 +44,6 @@ void	ft_put_minimap(t_struct *game)
 	int j = -1;
 	while (++i < MINIMAP_W)
 	{
-		// printf(">> %d\n", MINIMAP_W);
 		while (++j < MINIMAP_H)
 			my_mlx_pixel_put(game->minimap, i, j, 0x00FF0000);
 		j = -1;
