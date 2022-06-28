@@ -5,22 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 11:42:43 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 10:09:34 by dso              ###   ########.fr       */
+/*   Created: 2022/06/28 12:24:13 by dso               #+#    #+#             */
+/*   Updated: 2022/06/28 12:24:15 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void start_game(t_struct	*game)
+static void start_game(t_struct *game)
 {
 	game->map.mlx = mlx_init();
 	game->map.win = mlx_new_window(game->map.mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
-	// game->map.img = ft_init_img();
-	// ft_fill_img(game);
-	ft_put_minimap(game);
-	mlx_key_hook(game->map.win, key_hook, game);
+	// ft_put_minimap(game);
+	mlx_loop_hook(game->map.mlx, ft_get_keys, game);
 	mlx_hook(game->map.win, 17, 1L << 17, ft_abort_prog, game);
+	mlx_hook(game->map.win, 2, 1L << 0, ft_key_press, game);
+	mlx_hook(game->map.win, 3, 1L << 1, ft_key_release, game);
 	mlx_loop(game->map.mlx);
 }
 
