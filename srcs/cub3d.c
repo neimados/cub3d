@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:46:37 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 12:46:40 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:12:35 by dso              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	main(int argc, char **argv)
 	if (ft_check_map(&game) == 1)
 		return (ft_error("Error\nMap is not valid\n"));
 	player_pos(&game, -1, -1);
+	if (game.player.x == 0 || game.player.y == 0)
+		return (ft_free_struct(&game));
 	start_game(&game);
 	
 /*
