@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:33:58 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 15:56:05 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:58:14 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	ft_put_minimap(t_struct *game)
 			my_mlx_pixel_put(game->minimap, i, j, 0x00FF0000);
 		j = -1;
 	}
-	mlx_put_image_to_window(game->mlx, game->win, game->minimap->img, (MAP_WIDTH - 120), 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->minimap->img, (MAP_WIDTH - MINIMAP_W), 0);
 }
