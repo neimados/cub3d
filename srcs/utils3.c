@@ -63,3 +63,32 @@ t_struct	ft_init_struct(void)
 	new.player.y = 0;
 	return (new);
 }
+
+int	ft_map_height(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+int	ft_map_width(char **map)
+{
+	int	i;
+	int	max;
+	int	tmp;
+
+	i = 0;
+	max = 0;
+	tmp = 0;
+	while (map[i])
+	{
+		tmp = ft_strlen(map[i]);
+		if (tmp > max)
+			max = tmp;
+		i++;
+	}
+	return (max);
+}

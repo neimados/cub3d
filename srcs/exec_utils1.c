@@ -54,6 +54,12 @@ int	ft_key_release(int keycode, t_struct *game)
 
 int	ft_get_keys(t_struct *game)
 {
+	double	inc = 0.1;
+	int		x;
+	int		y;
+
+	x = game->map.pos_x;
+	y = game->map.pos_y;
 	game->time += 1;
 	if (game->time > 100)
 	{
@@ -62,14 +68,39 @@ int	ft_get_keys(t_struct *game)
 		if (game->key_turn_right == 1)
 			printf("Turn right\n");
 		if (game->key_up == 1)
+		{
+			game->map.pos_y -= inc;
+			y = game->map.pos_y;
+			if (game->map.map[y][x] != '0')
+				game->map.pos_y += inc;
 			printf("Go up\n");
+		}
 		if (game->key_down == 1)
+		{
+			game->map.pos_y += inc;
+			y = game->map.pos_y;
+			if (game->map.map[y][x] != '0')
+				game->map.pos_y -= inc;
 			printf("Go down\n");
+		}
 		if (game->key_right == 1)
+		{
+			game->map.pos_x += inc;
+			x = game->map.pos_x;
+			if (game->map.map[y][x] != '0')
+				game->map.pos_x -= inc;
 			printf("Go right\n");
+		}
 		if (game->key_left == 1)
+		{
+			game->map.pos_x -= inc;
+			x = game->map.pos_x;
+			if (game->map.map[y][x] != '0')
+				game->map.pos_x += inc;
 			printf("Go left\n");
+		}
 		game->time = 0;
+		ft_display(game);
 		ft_put_minimap(game);
 	}
 	return (1);

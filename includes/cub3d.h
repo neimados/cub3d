@@ -33,6 +33,11 @@
 # include <math.h>
 # include <stdio.h>
 
+typedef struct	s_raycasting
+{
+	int	rayon;
+}				t_rc;
+
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
@@ -50,6 +55,10 @@ typedef struct s_map
 	char	*ea;
 	long	f;
 	long	c;
+	int		height;
+	int		width;
+	double	pos_x;
+	double	pos_y;
 }			t_map;
 
 typedef struct s_player
@@ -75,7 +84,9 @@ typedef struct s_struct
 	char		*maptmp;
 	t_map		map;
 	t_data		*minimap;
+	t_data		display;
 	t_player	player;
+	t_rc		rc;
 }			t_struct;
 
 int			ft_strlen(char *str);
@@ -108,6 +119,9 @@ int			ft_error_gnl(char *str);
 long		ft_color_calc(char **tmp);
 int			ft_parse(char *str, t_struct *game);
 int			ft_free_struct(t_struct *game);
+int			ft_map_height(char **map);
+int			ft_map_width(char **map);
+void		ft_display(t_struct *game);
 
 int			ft_get_keys(t_struct *game);
 int			ft_key_release(int keycode, t_struct *game);
@@ -115,5 +129,6 @@ int			ft_key_press(int keycode, t_struct *game);
 void		ft_exit_prog(t_struct *game, char *str);
 int			ft_abort_prog(t_struct *game);
 void		ft_put_minimap(t_struct *game);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

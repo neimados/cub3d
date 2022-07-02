@@ -16,7 +16,6 @@ static void start_game(t_struct *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
-	ft_put_minimap(game);
 	mlx_loop_hook(game->mlx, ft_get_keys, game);
 	mlx_hook(game->win, 17, 1L << 17, ft_abort_prog, game);
 	mlx_hook(game->win, 2, 1L << 0, ft_key_press, game);
@@ -40,6 +39,10 @@ int	main(int argc, char **argv)
 	if (ft_check_map(&game) == 1)
 		return (ft_error("Error\nMap is not valid\n"));
 	player_pos(&game, -1, -1);
+	game.map.height = ft_map_height(game.map.map);
+	game.map.width = ft_map_width(game.map.map);
+	game.map.pos_x = game.player.x;
+	game.map.pos_y = game.player.y;
 	if (game.player.x == 0 || game.player.y == 0)
 		return (ft_free_struct(&game));
 	start_game(&game);
