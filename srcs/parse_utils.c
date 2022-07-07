@@ -14,10 +14,10 @@
 
 void	player_pos(t_struct *game, int i, int j)
 {
-	while (game->map.map[++i])
+	while (game->map.map[i])
 	{
-		j = -1;
-		while (game->map.map[i][++j])
+		j = 0;
+		while (game->map.map[i][j])
 		{
 			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S'
 			|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'W')
@@ -27,7 +27,9 @@ void	player_pos(t_struct *game, int i, int j)
 				game->player.direction = game->map.map[i][j];
 				game->map.map[i][j] = '0';
 			}
+			j++;
 		}
+		i++;
 	}
 }
 

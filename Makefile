@@ -7,7 +7,7 @@ SRC = ./srcs/cub3d.c ./srcs/utils.c ./srcs/get_next_line.c ./srcs/get_next_line_
 OBJS = ${SRC:.c=.o}
 
 CC		= gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 MINILIBX = ./minilibx/
 
 

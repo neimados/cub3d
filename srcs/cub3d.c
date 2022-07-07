@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		return (ft_error("Error\nIncorrect map configuration\n"));
 	if (ft_check_map(&game) == 1)
 		return (ft_error("Error\nMap is not valid\n"));
-	player_pos(&game, -1, -1);
+	player_pos(&game, 0, 0);
 	game.map.height = ft_map_height(game.map.map);
 	game.map.width = ft_map_width(game.map.map);
 	game.map.pos_x = game.player.x;
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	int	i = 0;
 	while (game.map.map[i])
 	{
-		printf("MAP %s\n", game.map.map[i]);
+		printf("MAP %d %s\n", i, game.map.map[i]);
 		i++;
 	}
 //TEST END
