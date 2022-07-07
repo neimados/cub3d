@@ -173,7 +173,7 @@ void	ft_display(t_struct *game)
 		// 	my_mlx_pixel_put(&game->display, game->ray.x, y, 0x00FF0000);
 		// 	y++;
 		// }
-		//ft_ray_column(game);
+		ft_ray_column(game);
 		//PRINT PIXELS PAR COLONNES
 		game->ray.x += 1;
 	}
