@@ -18,8 +18,8 @@ static void start_game(t_struct *game)
 	game->win = mlx_new_window(game->mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
 	mlx_hook(game->win, 17, 1L << 17, ft_abort_prog, game);
 	mlx_hook(game->win, 2, 1L << 0, ft_key_press, game);
-	mlx_loop_hook(game->mlx, ft_get_keys, game);
 	mlx_hook(game->win, 3, 1L << 1, ft_key_release, game);
+	mlx_loop_hook(game->mlx, ft_get_keys, game);
 	mlx_loop(game->mlx);
 }
 

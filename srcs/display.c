@@ -16,10 +16,6 @@ void	ft_init_ray(t_struct *game)
 {
 	game->ray.posx = (double)game->map.pos_x;
 	game->ray.posy = (double)game->map.pos_y;
-	game->ray.dirx = 0;
-	game->ray.diry = 0;
-	game->ray.planx = 0;
-	game->ray.plany = 0;
 	if (game->player.direction == 'N')
 	{
 		game->ray.dirx = -1;
@@ -68,7 +64,7 @@ void	ft_init_display(t_struct *game)
 	game->ray.rx = MAP_WIDTH;
 	game->ray.ry = MAP_HEIGHT;
 	game->ray.speed = 0.03;
-	game->ray.tspeed = 0.033 * 1.8;
+	game->ray.tspeed = 0.03;
 }
 
 void	ft_ray_step(t_struct *game)
@@ -113,12 +109,9 @@ void	ft_ray_draw(t_struct *game)
 	game->ray.drawend = game->ray.lineheight / 2 + game->ray.ry / 2;
 	if (game->ray.drawend >= game->ray.ry)
 		game->ray.drawend = game->ray.ry - 1;
-	if (game->map.map[game->ray.mapx][game->ray.mapy] == '1')
-		color = 0x00FF0000;
-	else
-		color = 0x00000BFF;
+	color = 0x0085C1E9;
 	if (game->ray.side == 1)
-		color = color / 2;
+		color = 0x00A2D9CE;
 	while (j < game->ray.drawend)
 	{
 		my_mlx_pixel_put(&game->display, game->ray.x, j, color);

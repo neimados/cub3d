@@ -69,7 +69,7 @@ void	ft_put_minimap(t_struct *game)
 	{
 		while (x < 4)
 		{
-			my_mlx_pixel_put(game->minimap, game->map.pos_x  * 10 + x, game->map.pos_y * 10 + y, 0x00FF0000);
+			my_mlx_pixel_put(game->minimap, game->map.pos_y * 10 + y, game->map.pos_x * 10 + x, 0x00FF0000);
 			x++;
 		}
 		x = -2;

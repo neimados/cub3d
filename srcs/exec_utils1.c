@@ -54,23 +54,28 @@ int	ft_key_release(int keycode, t_struct *game)
 
 int	ft_get_keys(t_struct *game)
 {
-	double oldplanx;
-	double olddirx;
+	double planxtmp;
+	double dirxtmp;
 
-	oldplanx = game->ray.planx;
-	olddirx = game->ray.dirx;
+	planxtmp = game->ray.planx;
+	dirxtmp = game->ray.dirx;
 	game->time += 1;
 	if (game->time > 100)
 	{
-		if (game->key_turn_left == 1)
+		if (game->key_turn_right == 1)//ROTATION DROITE
 		{	
 			game->ray.dirx = game->ray.dirx * cos(-game->ray.tspeed / 2) - game->ray.diry * sin(-game->ray.tspeed / 2);
-			game->ray.diry = olddirx * sin(-game->ray.tspeed / 2) + game->ray.diry * cos(-game->ray.tspeed / 2);
+			game->ray.diry = dirxtmp * sin(-game->ray.tspeed / 2) + game->ray.diry * cos(-game->ray.tspeed / 2);
 			game->ray.planx = game->ray.planx * cos(-game->ray.tspeed / 2) - game->ray.plany * sin(-game->ray.tspeed / 2);
-			game->ray.plany = oldplanx * sin(-game->ray.tspeed / 2) + game->ray.plany * cos(-game->ray.tspeed / 2);
+			game->ray.plany = planxtmp * sin(-game->ray.tspeed / 2) + game->ray.plany * cos(-game->ray.tspeed / 2);
 		}
-		if (game->key_turn_right == 1)
-			printf("Turn right\n");
+		if (game->key_turn_left == 1)//ROTATION GAUCHE
+		{
+			game->ray.dirx = game->ray.dirx * cos(game->ray.tspeed / 2) - game->ray.diry * sin(game->ray.tspeed / 2);
+			game->ray.diry = dirxtmp * sin(game->ray.tspeed / 2) + game->ray.diry * cos(game->ray.tspeed / 2);
+			game->ray.planx = game->ray.planx * cos(game->ray.tspeed / 2) - game->ray.plany * sin(game->ray.tspeed / 2);
+			game->ray.plany = planxtmp * sin(game->ray.tspeed / 2) + game->ray.plany * cos(game->ray.tspeed / 2);
+		}
 		if (game->key_up == 1)//ALLER TOUT DROIT
 		{
 			if (game->map.map[(int)(game->map.pos_x + (game->ray.dirx * game->ray.speed * 2))][(int)game->map.pos_y] == '0')
@@ -101,7 +106,7 @@ int	ft_get_keys(t_struct *game)
 		}
 		game->time = 0;
 		ft_display(game);
-		//ft_put_minimap(game);
+		ft_put_minimap(game);
 	}
 	return (1);
 }
