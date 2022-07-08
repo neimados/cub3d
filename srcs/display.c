@@ -14,8 +14,8 @@
 
 void	ft_init_ray(t_struct *game)
 {
-	game->ray.posx = (double)game->map.pos_x + 0.5;
-	game->ray.posy = (double)game->map.pos_y + 0.5;
+	game->ray.posx = (double)game->map.pos_x;
+	game->ray.posy = (double)game->map.pos_y;
 	game->ray.dirx = 0;
 	game->ray.diry = 0;
 	game->ray.planx = 0;
@@ -67,6 +67,8 @@ void	ft_init_display(t_struct *game)
 	game->ray.drawend = 0;
 	game->ray.rx = MAP_WIDTH;
 	game->ray.ry = MAP_HEIGHT;
+	game->ray.speed = 0.03;
+	game->ray.tspeed = 0.033 * 1.8;
 }
 
 void	ft_ray_step(t_struct *game)
@@ -99,7 +101,6 @@ void	ft_ray_draw(t_struct *game)
 	int	j;
 
 	color = 0;
-	dprintf(2, "%d %d\n", game->ray.mapx, game->ray.mapy);
 	if (game->ray.side == 0)
 		game->ray.perpwalldist = (game->ray.sidedistx - game->ray.deltadistx);
 	else

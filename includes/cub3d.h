@@ -60,6 +60,8 @@ typedef struct	s_ray {
 	int		drawstart; //position de debut ou il faut dessiner
 	int		drawend; //position de fin ou il faut dessiner
 	int		x; //permet de parcourir tous les rayons
+	double	speed;//vitesse pour avancer
+	double	tspeed;//vitesse pour tourner
 }				t_ray;
 
 typedef struct	s_data {

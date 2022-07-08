@@ -54,54 +54,54 @@ int	ft_key_release(int keycode, t_struct *game)
 
 int	ft_get_keys(t_struct *game)
 {
-	double	inc = 0.1;
-	int		x;
-	int		y;
+	double oldplanx;
+	double olddirx;
 
-	x = game->map.pos_x;
-	y = game->map.pos_y;
+	oldplanx = game->ray.planx;
+	olddirx = game->ray.dirx;
 	game->time += 1;
 	if (game->time > 100)
 	{
 		if (game->key_turn_left == 1)
-			printf("Turn left\n");
+		{	
+			game->ray.dirx = game->ray.dirx * cos(-game->ray.tspeed / 2) - game->ray.diry * sin(-game->ray.tspeed / 2);
+			game->ray.diry = olddirx * sin(-game->ray.tspeed / 2) + game->ray.diry * cos(-game->ray.tspeed / 2);
+			game->ray.planx = game->ray.planx * cos(-game->ray.tspeed / 2) - game->ray.plany * sin(-game->ray.tspeed / 2);
+			game->ray.plany = oldplanx * sin(-game->ray.tspeed / 2) + game->ray.plany * cos(-game->ray.tspeed / 2);
+		}
 		if (game->key_turn_right == 1)
 			printf("Turn right\n");
-		if (game->key_up == 1)
+		if (game->key_up == 1)//ALLER TOUT DROIT
 		{
-			game->map.pos_y -= inc;
-			y = game->map.pos_y;
-			if (game->map.map[y][x] != '0')
-				game->map.pos_y += inc;
-			printf("Go up\n");
+			if (game->map.map[(int)(game->map.pos_x + (game->ray.dirx * game->ray.speed * 2))][(int)game->map.pos_y] == '0')
+				game->map.pos_x += game->ray.dirx * game->ray.speed;
+			if (game->map.map[(int)(game->map.pos_x)][(int)(game->map.pos_y + (game->ray.diry * game->ray.speed * 2))] == '0')
+				game->map.pos_y += game->ray.diry * game->ray.speed;
 		}
-		if (game->key_down == 1)
+		if (game->key_down == 1)//RECULER
 		{
-			game->map.pos_y += inc;
-			y = game->map.pos_y;
-			if (game->map.map[y][x] != '0')
-				game->map.pos_y -= inc;
-			printf("Go down\n");
+			if (game->map.map[(int)(game->map.pos_x - (game->ray.dirx * game->ray.speed * 2))][(int)(game->map.pos_y)] == '0')
+			game->map.pos_x -= game->ray.dirx * game->ray.speed;
+			if (game->map.map[(int)(game->map.pos_x)][(int)(game->map.pos_y - (game->ray.diry * game->ray.speed * 2))] == '0')
+				game->map.pos_y -= game->ray.diry * game->ray.speed;
 		}
-		if (game->key_right == 1)
+		if (game->key_right == 1)//PAS A DROITE
 		{
-			game->map.pos_x += inc;
-			x = game->map.pos_x;
-			if (game->map.map[y][x] != '0')
-				game->map.pos_x -= inc;
-			printf("Go right\n");
+			if (game->map.map[(int)(game->map.pos_x + game->ray.diry * (game->ray.speed * 2))][(int)game->map.pos_y] == '0')
+				game->map.pos_x += game->ray.diry * game->ray.speed;
+			if (game->map.map[(int)game->ray.posx][(int)(game->ray.posy - game->ray.dirx * (game->ray.speed * 2))] == '0')
+				game->map.pos_y -= game->ray.dirx * game->ray.speed;
 		}
-		if (game->key_left == 1)
+		if (game->key_left == 1)//PAS A GAUCHE
 		{
-			game->map.pos_x -= inc;
-			x = game->map.pos_x;
-			if (game->map.map[y][x] != '0')
-				game->map.pos_x += inc;
-			printf("Go left\n");
+			if (game->map.map[(int)(game->map.pos_x - game->ray.diry * (game->ray.speed * 2))][(int)game->map.pos_y] == '0')
+				game->map.pos_x -= game->ray.diry * game->ray.speed;
+			if (game->map.map[(int)game->map.pos_x][(int)(game->map.pos_y + game->ray.dirx * (game->ray.speed * 2))] == '0')
+				game->map.pos_y += game->ray.dirx * game->ray.speed;
 		}
 		game->time = 0;
 		ft_display(game);
-		ft_put_minimap(game);
+		//ft_put_minimap(game);
 	}
 	return (1);
 }
