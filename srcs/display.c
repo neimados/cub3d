@@ -14,8 +14,6 @@
 
 void	ft_init_ray(t_struct *game)
 {
-	game->ray.posx = (double)game->map.pos_x;
-	game->ray.posy = (double)game->map.pos_y;
 	if (game->player.direction == 'N')
 	{
 		game->ray.dirx = -1;
@@ -51,7 +49,8 @@ void	ft_init_display(t_struct *game)
 		&game->display.bits_per_pixel,
 		&game->display.line_length,
 		&game->display.endian);
-	ft_init_ray(game);
+	game->ray.posx = (double)game->map.pos_x;
+	game->ray.posy = (double)game->map.pos_y;
 	game->ray.camerax = 0;
 	game->ray.stepx = 0;
 	game->ray.stepy = 0;
@@ -94,27 +93,25 @@ void	ft_ray_step(t_struct *game)
 void	ft_ray_draw(t_struct *game)
 {
 	int	color;
+	int	i;
 	int	j;
 
 	color = 0;
-	if (game->ray.side == 0)
-		game->ray.perpwalldist = (game->ray.sidedistx - game->ray.deltadistx);
-	else
-		game->ray.perpwalldist = (game->ray.sidedisty - game->ray.deltadisty);
+	i = -1;
 	j = game->ray.drawstart;
-	game->ray.lineheight = (int)(game->ray.ry / game->ray.perpwalldist);
-	game->ray.drawstart = -game->ray.lineheight / 2 + game->ray.ry / 2;
-	if (game->ray.drawstart < 0)
-		game->ray.drawstart = 0;
-	game->ray.drawend = game->ray.lineheight / 2 + game->ray.ry / 2;
-	if (game->ray.drawend >= game->ray.ry)
-		game->ray.drawend = game->ray.ry - 1;
+	while (++i < j)//DRAW PLAFOND
+		my_mlx_pixel_put(&game->display, game->ray.x, i, (int)game->map.c);
 	color = 0x0085C1E9;
 	if (game->ray.side == 1)
 		color = 0x00A2D9CE;
-	while (j < game->ray.drawend)
+	while (j < game->ray.drawend)//DRAW MURS
 	{
 		my_mlx_pixel_put(&game->display, game->ray.x, j, color);
+		j++;
+	}
+	while (j < game->ray.ry)//DRAW SOL
+	{
+		my_mlx_pixel_put(&game->display, game->ray.x, j, (int)game->map.f);
 		j++;
 	}
 }
@@ -138,6 +135,19 @@ void	ft_ray_dda(t_struct *game)
 		if (game->map.map[game->ray.mapx][game->ray.mapy] == '1')
 			game->ray.hit = 1;
 	}
+	//CALCUL DISTANCE AU MUR
+	if (game->ray.side == 0)
+		game->ray.perpwalldist = (game->ray.sidedistx - game->ray.deltadistx);
+	else
+		game->ray.perpwalldist = (game->ray.sidedisty - game->ray.deltadisty);
+	//DISTANCE HAUTEUR
+		game->ray.lineheight = (int)(game->ray.ry / game->ray.perpwalldist);
+	game->ray.drawstart = -game->ray.lineheight / 2 + game->ray.ry / 2;
+	if (game->ray.drawstart < 0)
+		game->ray.drawstart = 0;
+	game->ray.drawend = game->ray.lineheight / 2 + game->ray.ry / 2;
+	if (game->ray.drawend >= game->ray.ry)
+		game->ray.drawend = game->ray.ry - 1;
 	ft_ray_draw(game);
 }
 
@@ -148,8 +158,8 @@ void	ft_ray_column(t_struct *game)
 	game->ray.raydiry = game->ray.diry + game->ray.plany * game->ray.camerax;
 	game->ray.mapx = (int)game->ray.posx;
 	game->ray.mapy = (int)game->ray.posy;
-	game->ray.deltadistx = sqrt(1 + (game->ray.raydiry * game->ray.raydiry) / (game->ray.raydirx * game->ray.raydirx));
-	game->ray.deltadisty = sqrt(1 + (game->ray.raydirx * game->ray.raydirx) / (game->ray.raydiry * game->ray.raydiry));
+	game->ray.deltadistx = fabs(1 / game->ray.raydirx);//FIX PB FISHEYE
+	game->ray.deltadisty = fabs(1 / game->ray.raydiry);//FIX PB FISHEYE
 	game->ray.hit = 0;
 	ft_ray_step(game);
 	ft_ray_dda(game);
@@ -167,8 +177,7 @@ void	ft_display(t_struct *game)
 		// 	my_mlx_pixel_put(&game->display, game->ray.x, y, 0x00FF0000);
 		// 	y++;
 		// }
-		ft_ray_column(game);
-		//PRINT PIXELS PAR COLONNES
+		ft_ray_column(game);//PRINT PIXELS PAR COLONNES
 		game->ray.x += 1;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->display.img, 0, 0);

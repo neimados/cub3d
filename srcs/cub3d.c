@@ -14,6 +14,7 @@
 
 static void start_game(t_struct *game)
 {
+	ft_init_ray(game);//INITIALISATION DE LA DIRECTION
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
 	mlx_hook(game->win, 17, 1L << 17, ft_abort_prog, game);

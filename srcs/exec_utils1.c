@@ -64,17 +64,17 @@ int	ft_get_keys(t_struct *game)
 	{
 		if (game->key_turn_right == 1)//ROTATION DROITE
 		{	
-			game->ray.dirx = game->ray.dirx * cos(-game->ray.tspeed / 2) - game->ray.diry * sin(-game->ray.tspeed / 2);
-			game->ray.diry = dirxtmp * sin(-game->ray.tspeed / 2) + game->ray.diry * cos(-game->ray.tspeed / 2);
-			game->ray.planx = game->ray.planx * cos(-game->ray.tspeed / 2) - game->ray.plany * sin(-game->ray.tspeed / 2);
-			game->ray.plany = planxtmp * sin(-game->ray.tspeed / 2) + game->ray.plany * cos(-game->ray.tspeed / 2);
+			game->ray.dirx = game->ray.dirx * cos(-game->ray.tspeed) - game->ray.diry * sin(-game->ray.tspeed);
+			game->ray.diry = dirxtmp * sin(-game->ray.tspeed) + game->ray.diry * cos(-game->ray.tspeed);
+			game->ray.planx = game->ray.planx * cos(-game->ray.tspeed) - game->ray.plany * sin(-game->ray.tspeed);
+			game->ray.plany = planxtmp * sin(-game->ray.tspeed) + game->ray.plany * cos(-game->ray.tspeed);
 		}
 		if (game->key_turn_left == 1)//ROTATION GAUCHE
 		{
-			game->ray.dirx = game->ray.dirx * cos(game->ray.tspeed / 2) - game->ray.diry * sin(game->ray.tspeed / 2);
-			game->ray.diry = dirxtmp * sin(game->ray.tspeed / 2) + game->ray.diry * cos(game->ray.tspeed / 2);
-			game->ray.planx = game->ray.planx * cos(game->ray.tspeed / 2) - game->ray.plany * sin(game->ray.tspeed / 2);
-			game->ray.plany = planxtmp * sin(game->ray.tspeed / 2) + game->ray.plany * cos(game->ray.tspeed / 2);
+			game->ray.dirx = game->ray.dirx * cos(game->ray.tspeed) - game->ray.diry * sin(game->ray.tspeed);
+			game->ray.diry = dirxtmp * sin(game->ray.tspeed) + game->ray.diry * cos(game->ray.tspeed);
+			game->ray.planx = game->ray.planx * cos(game->ray.tspeed / 2) - game->ray.plany * sin(game->ray.tspeed);
+			game->ray.plany = planxtmp * sin(game->ray.tspeed) + game->ray.plany * cos(game->ray.tspeed);
 		}
 		if (game->key_up == 1)//ALLER TOUT DROIT
 		{
@@ -105,6 +105,7 @@ int	ft_get_keys(t_struct *game)
 				game->map.pos_y += game->ray.dirx * game->ray.speed;
 		}
 		game->time = 0;
+		mlx_clear_window(game->mlx, game->win);
 		ft_display(game);
 		ft_put_minimap(game);
 	}

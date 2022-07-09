@@ -148,6 +148,8 @@ int			ft_free_struct(t_struct *game);
 int			ft_map_height(char **map);
 int			ft_map_width(char **map);
 void		ft_display(t_struct *game);
+void		ft_init_display(t_struct *game);
+void		ft_init_ray(t_struct *game);
 
 int			ft_get_keys(t_struct *game);
 int			ft_key_release(int keycode, t_struct *game);
