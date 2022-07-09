@@ -79,3 +79,24 @@ int	ft_error_gnl(char *str)
 	free(str);
 	return (1);
 }
+
+void	ft_free_all(t_struct *game)
+{
+	int	i;
+
+	i = -1;
+	if (game->map.no)
+		free(game->map.no);
+	if (game->map.so)
+		free(game->map.so);
+	if (game->map.we)
+		free(game->map.we);
+	if (game->map.ea)
+		free(game->map.ea);
+	if (game->map.map)
+	{
+		while (game->map.map[++i])
+			free(game->map.map[i]);
+	}
+	free(game->map.map);
+}

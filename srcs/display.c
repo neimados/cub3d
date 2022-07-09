@@ -148,7 +148,6 @@ void	ft_ray_dda(t_struct *game)
 	game->ray.drawend = game->ray.lineheight / 2 + game->ray.ry / 2;
 	if (game->ray.drawend >= game->ray.ry)
 		game->ray.drawend = game->ray.ry - 1;
-	ft_ray_draw(game);
 }
 
 void	ft_ray_column(t_struct *game)
@@ -163,6 +162,8 @@ void	ft_ray_column(t_struct *game)
 	game->ray.hit = 0;
 	ft_ray_step(game);
 	ft_ray_dda(game);
+	//ft_ray_texture(game);
+	ft_ray_draw(game);
 }
 
 void	ft_display(t_struct *game)
