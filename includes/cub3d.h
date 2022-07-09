@@ -23,7 +23,7 @@
 # define TEXTURE 64
 
 # define MAP_WIDTH 1000
-# define MAP_HEIGHT 800
+# define MAP_HEIGHT 600
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -67,7 +67,7 @@ typedef struct	s_ray {
 
 typedef struct	s_data {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -115,10 +115,9 @@ typedef struct s_struct
 	void		*texturew;
 	int			texturesize;
 	double		texturewall;
-	int			texturex;
-	int			texturey;
+	char		texturedir;
 	t_map		map;
-	t_data		*minimap;
+	t_data		minimap;
 	t_data		display;
 	t_player	player;
 	t_ray		ray;

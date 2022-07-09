@@ -44,7 +44,7 @@ void	ft_init_display(t_struct *game)
 	game->display.line_length = 0;
 	game->display.endian = 0;
 	game->display.img = mlx_new_image(game->mlx, MAP_WIDTH, MAP_HEIGHT);
-	game->display.addr = mlx_get_data_addr(
+	game->display.addr = (int *)mlx_get_data_addr(
 		game->display.img,
 		&game->display.bits_per_pixel,
 		&game->display.line_length,
@@ -100,18 +100,18 @@ void	ft_ray_draw(t_struct *game)
 	i = -1;
 	j = game->ray.drawstart;
 	while (++i < j)//DRAW PLAFOND
-		my_mlx_pixel_put(&game->display, game->ray.x, i, (int)game->map.c);
+		game->display.addr[i * game->ray.rx + game->ray.x] = game->map.c;
 	color = 0x0085C1E9;
 	if (game->ray.side == 1)
 		color = 0x00A2D9CE;
 	while (j < game->ray.drawend)//DRAW MURS
 	{
-		my_mlx_pixel_put(&game->display, game->ray.x, j, color);
+		game->display.addr[j * game->ray.rx + game->ray.x] = color;
 		j++;
 	}
 	while (j < game->ray.ry)//DRAW SOL
 	{
-		my_mlx_pixel_put(&game->display, game->ray.x, j, (int)game->map.f);
+		game->display.addr[j * game->ray.rx + game->ray.x] = game->map.f;
 		j++;
 	}
 }
