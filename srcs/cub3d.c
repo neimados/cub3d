@@ -14,10 +14,10 @@
 
 static void start_game(t_struct *game)
 {
-	ft_init_ray(game);//INITIALISATION DE LA DIRECTION
-	ft_init_textures(game);//INITIALISATION DES TEXTURES
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
+	ft_init_ray(game);//INITIALISATION DE LA DIRECTION
+	ft_init_textures(game);//INITIALISATION DES TEXTURES
 	mlx_hook(game->win, 17, 1L << 17, ft_abort_prog, game);
 	mlx_hook(game->win, 2, 1L << 0, ft_key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, ft_key_release, game);

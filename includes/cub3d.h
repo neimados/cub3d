@@ -23,7 +23,7 @@
 # define TEXTURE 64
 
 # define MAP_WIDTH 1000
-# define MAP_HEIGHT 600
+# define MAP_HEIGHT 800
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -37,32 +37,32 @@
 typedef struct	s_ray {
 	int		rx; //width de la fenetre
 	int		ry; //height de la fenetre
-	double	posx; //position x du joueur
-	double	posy; //position y du joueur
-	double	dirx; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
-	double	diry; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
-	double	planx; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
-	double	plany; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
-	double	raydirx; //calcul de direction x du rayon
-	double	raydiry; //calcul de direction y du rayon
-	double	camerax; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
+	float	posx; //position x du joueur
+	float	posy; //position y du joueur
+	float	dirx; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
+	float	diry; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
+	float	planx; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
+	float	plany; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
+	float	raydirx; //calcul de direction x du rayon
+	float	raydiry; //calcul de direction y du rayon
+	float	camerax; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
 	int		mapx; // coordonée x du carré dans lequel est pos
 	int		mapy; // coordonnée y du carré dans lequel est pos
-	double	sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
-	double	sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
-	double	deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
-	double	deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
+	float	sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
+	float	sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
+	float	deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
+	float	deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
 	int		stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
 	int		stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
 	int		hit; // 1 si un mur a ete touche, 0 sinon
 	int		side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
-	double	perpwalldist; // distance du joueur au mur
+	float	perpwalldist; // distance du joueur au mur
 	int		lineheight; //hauteur de la ligne a dessiner
 	int		drawstart; //position de debut ou il faut dessiner
 	int		drawend; //position de fin ou il faut dessiner
 	int		x; //permet de parcourir tous les rayons
-	double	speed;//vitesse pour avancer
-	double	tspeed;//vitesse pour tourner
+	float	speed;//vitesse pour avancer
+	float	tspeed;//vitesse pour tourner
 }				t_ray;
 
 typedef struct	s_data {
@@ -84,8 +84,8 @@ typedef struct s_map
 	long	c;
 	int		height;
 	int		width;
-	double	pos_x;
-	double	pos_y;
+	float	pos_x;
+	float	pos_y;
 }			t_map;
 
 typedef struct s_player
@@ -94,6 +94,21 @@ typedef struct s_player
 	int		y;
 	char	direction;
 }			t_player;
+
+typedef struct s_texture
+{
+	void		*n;
+	void		*s;
+	void		*e;
+	void		*w;
+	int			size;
+	float		wall;
+	int			*color;
+	int			x;
+	int			y;
+	float		step;
+	float		pos;
+}			t_texture;
 
 typedef struct s_struct
 {
@@ -109,18 +124,12 @@ typedef struct s_struct
 	int			count;
 	int			pos;
 	char		*maptmp;
-	void		*texturen;
-	void		*textures;
-	void		*texturee;
-	void		*texturew;
-	int			texturesize;
-	double		texturewall;
-	char		texturedir;
 	t_map		map;
 	t_data		minimap;
 	t_data		display;
 	t_player	player;
 	t_ray		ray;
+	t_texture	tex;
 }			t_struct;
 
 int			ft_strlen(char *str);
@@ -160,6 +169,7 @@ void		ft_init_display(t_struct *game);
 void		ft_init_ray(t_struct *game);
 void		ft_init_textures(t_struct *game);
 void		ft_free_all(t_struct *game);
+void		ft_ray_texture(t_struct *game);
 
 int			ft_get_keys(t_struct *game);
 int			ft_key_release(int keycode, t_struct *game);

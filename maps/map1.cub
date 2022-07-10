@@ -1,10 +1,10 @@
-NO ./sprites/colorstone.xpm
-SO ./sprites/bluestone.xpm
-WE ./sprites/greystone.xpm
-EA ./sprites/wood.xpm
+C 203,235,196
+NO ./sprites/matrix.xpm
+SO ./sprites/bluema.xpm
+F 18,45,19
+WE ./sprites/orangema.xpm
+EA ./sprites/redma.xpm
 
-F 255,248,220
-C 135,206,250
 
         1111111111111111111111111
         1000000000110000000000001

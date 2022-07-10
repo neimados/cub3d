@@ -49,8 +49,8 @@ void	ft_init_display(t_struct *game)
 		&game->display.bits_per_pixel,
 		&game->display.line_length,
 		&game->display.endian);
-	game->ray.posx = (double)game->map.pos_x + 0.01;
-	game->ray.posy = (double)game->map.pos_y + 0.01;
+	game->ray.posx = (double)game->map.pos_x + 0.001;
+	game->ray.posy = (double)game->map.pos_y + 0.001;
 	game->ray.camerax = 0;
 	game->ray.stepx = 0;
 	game->ray.stepy = 0;
@@ -106,7 +106,9 @@ void	ft_ray_draw(t_struct *game)
 		color = 0x00A2D9CE;
 	while (j < game->ray.drawend)//DRAW MURS
 	{
-		game->display.addr[j * game->ray.rx + game->ray.x] = color;
+		game->tex.y = (int)game->tex.pos & (game->tex.size - 1);
+		game->tex.pos += game->tex.step;
+		game->display.addr[j * game->ray.rx + game->ray.x] = game->tex.color[game->tex.size * game->tex.y + game->tex.x];
 		j++;
 	}
 	while (j < game->ray.ry)//DRAW SOL
@@ -118,7 +120,7 @@ void	ft_ray_draw(t_struct *game)
 
 void	ft_ray_dda(t_struct *game)
 {
-	while (game->ray.hit == 0)
+	while (game->ray.hit == 0)//ENVOI DES RAYONS JUSQU A HIT
 	{
 		if (game->ray.sidedistx < game->ray.sidedisty)
 		{
@@ -162,7 +164,7 @@ void	ft_ray_column(t_struct *game)
 	game->ray.hit = 0;
 	ft_ray_step(game);
 	ft_ray_dda(game);
-	//ft_ray_texture(game);
+	ft_ray_texture(game);
 	ft_ray_draw(game);
 }
 
@@ -172,12 +174,6 @@ void	ft_display(t_struct *game)
 	game->ray.x = 0;
 	while (game->ray.x < game->ray.rx)
 	{
-		// int y = 0;
-		// while (y < MAP_HEIGHT)
-		// {
-		// 	my_mlx_pixel_put(&game->display, game->ray.x, y, 0x00FF0000);
-		// 	y++;
-		// }
 		ft_ray_column(game);//PRINT PIXELS PAR COLONNES
 		game->ray.x += 1;
 	}
