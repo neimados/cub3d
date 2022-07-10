@@ -62,17 +62,17 @@ void	ft_put_minimap(t_struct *game)
 		y = 0;
 		x++;
 	}
-	// y = -2;
-	// x = -2;
-	// while (x < 4)//PLAYER
-	// {
-	// 	while (y < 4)
-	// 	{
-	// 		//my_mlx_pixel_put(game->minimap, game->map.pos_y * 10 + y, game->map.pos_x * 10 + x, 0x00FF0000);
-	// 		y++;
-	// 	}
-	// 	y = -2;
-	// 	x++;
-	// }
+	y = -2;
+	x = -2;
+	while (x < 4)//PLAYER
+	{
+		while (y < 4)
+		{
+			game->minimap.addr[(int)(game->map.pos_x * 10 + x) * (game->map.width * 10) + (int)(game->map.pos_y * 10 + y)] = 0x00FF0000;
+			y++;
+		}
+		y = -2;
+		x++;
+	}
 	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, (MAP_WIDTH - (game->map.width * 10)), 0);
 }

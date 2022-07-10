@@ -49,8 +49,8 @@ void	ft_init_display(t_struct *game)
 		&game->display.bits_per_pixel,
 		&game->display.line_length,
 		&game->display.endian);
-	game->ray.posx = (double)game->map.pos_x;
-	game->ray.posy = (double)game->map.pos_y;
+	game->ray.posx = (double)game->map.pos_x + 0.01;
+	game->ray.posy = (double)game->map.pos_y + 0.01;
 	game->ray.camerax = 0;
 	game->ray.stepx = 0;
 	game->ray.stepy = 0;

@@ -31,19 +31,7 @@ void	ft_init_textures(t_struct *game)
 	game->texturew = mlx_get_data_addr(game->texturew, &game->display.bits_per_pixel, &game->display.line_length, &game->display.endian);
 }
 
-void	ft_ray_texture(t_struct *game)
-{
-	if (game->ray.side == 0 && game->ray.raydirx < 0)//FACE N
-		game->texturedir = 'N';
-	if (game->ray.side == 0 && game->ray.raydirx > 0)//FACE S
-		game->texturedir = 'S';
-	if (game->ray.side == 1 && game->ray.raydiry < 0)//FACE W
-		game->texturedir = 'W';
-	if (game->ray.side == 1 && game->ray.raydiry >= 0)//FACE E
-		game->texturedir = 'E';
-	if (game->ray.side == 0)
-		game->texturewall = game->ray.posy + game->ray.perpwalldist * game->ray.raydiry;
-	else
-		game->texturewall = game->ray.posx + game->ray.perpwalldist * game->ray.raydirx;
-	//game->texturewall -= floor((game->texturewall));
-}
+// void	ft_ray_texture(t_struct *game)
+// {
+
+// }
