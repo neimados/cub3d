@@ -43,8 +43,8 @@ int	main(int argc, char **argv)
 	player_pos(&game, 0, 0);
 	game.map.height = ft_map_height(game.map.map);
 	game.map.width = ft_map_width(game.map.map);
-	game.map.pos_x = game.player.x;
-	game.map.pos_y = game.player.y;
+	game.map.pos_x = game.player.y + 0.2;
+	game.map.pos_y = game.player.x + 0.2;
 	if (game.player.x == 0 || game.player.y == 0)
 		return (ft_free_struct(&game));
 	start_game(&game);

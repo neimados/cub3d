@@ -49,8 +49,8 @@ void	ft_init_display(t_struct *game)
 		&game->display.bits_per_pixel,
 		&game->display.line_length,
 		&game->display.endian);
-	game->ray.posx = (double)game->map.pos_x + 0.001;
-	game->ray.posy = (double)game->map.pos_y + 0.001;
+	game->ray.posx = (double)game->map.pos_x;
+	game->ray.posy = (double)game->map.pos_y;
 	game->ray.camerax = 0;
 	game->ray.stepx = 0;
 	game->ray.stepy = 0;
@@ -152,8 +152,8 @@ void	ft_ray_column(t_struct *game)
 	game->ray.camerax = 2 * game->ray.x / (double)game->ray.rx - 1;
 	game->ray.raydirx = game->ray.dirx + game->ray.planx * game->ray.camerax;
 	game->ray.raydiry = game->ray.diry + game->ray.plany * game->ray.camerax;
-	game->ray.mapx = (int)game->ray.posx;
-	game->ray.mapy = (int)game->ray.posy;
+	game->ray.mapx = game->map.pos_x;
+	game->ray.mapy = game->map.pos_y;
 	game->ray.deltadistx = fabs(1 / game->ray.raydirx);//FIX PB FISHEYE
 	game->ray.deltadisty = fabs(1 / game->ray.raydiry);//FIX PB FISHEYE
 	game->ray.hit = 0;
