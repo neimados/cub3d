@@ -1,9 +1,9 @@
 C 203,235,196
-NO ./sprites/matrix.xpm
-SO ./sprites/bluema.xpm
+NO ./sprites/bluebrick.xpm
+SO ./sprites/brickwall.xpm
 F 18,45,19
-WE ./sprites/orangema.xpm
-EA ./sprites/redma.xpm
+WE ./sprites/greybrick.xpm
+EA ./sprites/brownbrick.xpm
 
 
         1111111111111111111111111

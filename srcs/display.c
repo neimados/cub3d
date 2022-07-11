@@ -92,18 +92,13 @@ void	ft_ray_step(t_struct *game)
 
 void	ft_ray_draw(t_struct *game)
 {
-	int	color;
 	int	i;
 	int	j;
 
-	color = 0;
 	i = -1;
 	j = game->ray.drawstart;
 	while (++i < j)//DRAW PLAFOND
 		game->display.addr[i * game->ray.rx + game->ray.x] = game->map.c;
-	color = 0x0085C1E9;
-	if (game->ray.side == 1)
-		color = 0x00A2D9CE;
 	while (j < game->ray.drawend)//DRAW MURS
 	{
 		game->tex.y = (int)game->tex.pos & (game->tex.size - 1);

@@ -97,10 +97,8 @@ int	ft_parse_map(t_struct *game, char **tmp, char *str)
 
 int	ft_parse(char *str, t_struct *game)
 {
-	int		i;
 	char	**tmp;
 
-	i = 0;
 	tmp = NULL;
 	if (game->count != 6)
 		return (ft_parse_conf(game, tmp, str));
