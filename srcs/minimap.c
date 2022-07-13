@@ -12,14 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	int	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 void	ft_put_minimap(t_struct *game)
 {
 	int	x;
@@ -75,4 +67,5 @@ void	ft_put_minimap(t_struct *game)
 		x++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, (MAP_WIDTH - (game->map.width * 10)), 0);
+	mlx_destroy_image(game->mlx, game->minimap.img);
 }

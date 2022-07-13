@@ -113,6 +113,29 @@ void	ft_ray_draw(t_struct *game)
 	}
 }
 
+void	ft_ray_draw_bonus(t_struct *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = game->ray.drawstart;
+	while (++i < j)//DRAW PLAFOND
+		game->display.addr[i * game->ray.rx + game->ray.x] = 0xFFFFFFFF;
+	while (j < game->ray.drawend)//DRAW MURS
+	{
+		game->tex.y = (int)game->tex.pos & (game->tex.size - 1);
+		game->tex.pos += game->tex.step;
+		game->display.addr[j * game->ray.rx + game->ray.x] = game->tex.color[game->tex.size * game->tex.y + game->tex.x];
+		j++;
+	}
+	while (j < game->ray.ry)//DRAW SOL
+	{
+		game->display.addr[j * game->ray.rx + game->ray.x] = 0xFFFFFFFF;
+		j++;
+	}
+}
+
 void	ft_ray_dda(t_struct *game)
 {
 	while (game->ray.hit == 0)//ENVOI DES RAYONS JUSQU A HIT
@@ -159,8 +182,16 @@ void	ft_ray_column(t_struct *game)
 	game->ray.hit = 0;
 	ft_ray_step(game);
 	ft_ray_dda(game);
-	ft_ray_texture(game);
-	ft_ray_draw(game);
+	if (game->bonus == 1)
+	{
+		ft_ray_texture_bonus(game);
+		ft_ray_draw_bonus(game);
+	}
+	else
+	{
+		ft_ray_texture(game);
+		ft_ray_draw(game);
+	}
 }
 
 void	ft_display(t_struct *game)

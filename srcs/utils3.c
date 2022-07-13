@@ -61,6 +61,12 @@ t_struct	ft_init_struct(void)
 	new.map.c = -1;
 	new.player.x = 0;
 	new.player.y = 0;
+	new.minim = 0;
+	new.bonus = 0;
+	new.tex.n = NULL;
+	new.tex.s = NULL;
+	new.tex.e = NULL;
+	new.tex.w = NULL;
 	return (new);
 }
 

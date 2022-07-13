@@ -45,6 +45,13 @@ int	ft_key_release(int keycode, t_struct *game)
 		game->key_turn_left = 0;
 	else if (keycode == TURN_RIGHT)
 		game->key_turn_right = 0;
+	else if (keycode == TOUCHM)
+	{
+		if (game->minim == 0)
+			game->minim = 1;
+		else
+			game->minim = 0;
+	}
 	else if (keycode == ESCAPE)
 		ft_exit_prog(game, "Player escaped.");
 	else
@@ -105,9 +112,10 @@ int	ft_get_keys(t_struct *game)
 				game->map.pos_y += game->ray.dirx * game->ray.speed;
 		}
 		game->time = 0;
-		mlx_clear_window(game->mlx, game->win);
 		ft_display(game);
-		ft_put_minimap(game);
+		if (game->minim == 1)
+			ft_put_minimap(game);
+		mlx_destroy_image(game->mlx, game->display.img);
 	}
 	return (1);
 }

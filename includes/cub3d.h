@@ -20,10 +20,12 @@
 # define ESCAPE 53
 # define TURN_RIGHT 124
 # define TURN_LEFT 123
+# define TOUCHM 41
+# define TOUCHX 7
 # define TEXTURE 64
 
-# define MAP_WIDTH 1000
-# define MAP_HEIGHT 800
+# define MAP_WIDTH 800
+# define MAP_HEIGHT 600
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -124,6 +126,8 @@ typedef struct s_struct
 	int			count;
 	int			pos;
 	char		*maptmp;
+	int			minim;
+	int			bonus;
 	t_map		map;
 	t_data		minimap;
 	t_data		display;
@@ -170,6 +174,8 @@ void		ft_init_ray(t_struct *game);
 void		ft_init_textures(t_struct *game);
 void		ft_free_all(t_struct *game);
 void		ft_ray_texture(t_struct *game);
+void		ft_ray_draw_bonus(t_struct *game);
+void		ft_ray_texture_bonus(t_struct *game);
 
 int			ft_get_keys(t_struct *game);
 int			ft_key_release(int keycode, t_struct *game);
