@@ -12,12 +12,12 @@
 
 #include "../includes/cub3d.h"
 
-static void start_game(t_struct *game)
+static void	start_game(t_struct *game)
 {
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D, work in progress");
-	ft_init_ray(game);//INITIALISATION DE LA DIRECTION
-	ft_init_textures(game);//INITIALISATION DES TEXTURES
+	game->win = mlx_new_window(game->mlx, MAP_WIDTH, MAP_HEIGHT, "Cub3D");
+	ft_init_ray(game);
+	ft_init_textures(game);
 	mlx_hook(game->win, 17, 1L << 17, ft_abort_prog, game);
 	mlx_hook(game->win, 2, 1L << 0, ft_key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, ft_key_release, game);
@@ -48,28 +48,5 @@ int	main(int argc, char **argv)
 	if (game.player.x == 0 || game.player.y == 0)
 		return (ft_free_struct(&game));
 	start_game(&game);
-	
-/*
-//TEST BEGIN
-	printf("NO %s\n", game.map.no);
-	printf("SO %s\n", game.map.so);
-	printf("WE %s\n", game.map.we);
-	printf("EA %s\n", game.map.ea);
-	printf("F %ld\n", game.map.f);
-	printf("C %ld\n", game.map.c);
-
-	printf("PLAYER X %d\n", game.player.x);
-	printf("PLAYER Y %d\n", game.player.y);
-	printf("DIRECTION %c\n", game.player.direction);
-
-	int	i = 0;
-	while (game.map.map[i])
-	{
-		printf("MAP %d %s\n", i, game.map.map[i]);
-		i++;
-	}
-//TEST END
-*/
-
 	return (0);
 }

@@ -74,12 +74,6 @@ int	ft_free_struct(t_struct *game)
 	return (1);
 }
 
-int	ft_error_gnl(char *str)
-{
-	free(str);
-	return (1);
-}
-
 void	ft_free_all(t_struct *game)
 {
 	int	i;

@@ -110,3 +110,9 @@ long	ft_color_calc(char **tmp)
 		return (-1);
 	return ((r * 256 * 256) + (g * 256) + b);
 }
+
+int	ft_error_gnl(char *str)
+{
+	free(str);
+	return (1);
+}

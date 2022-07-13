@@ -38,12 +38,28 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
+void	ft_init_struct2(t_struct *new)
+{
+	int	i;
+
+	i = -1;
+	new->player.x = 0;
+	new->player.y = 0;
+	new->minim = 0;
+	new->bonus = 0;
+	new->bonusx = 0;
+	new->tex.n = NULL;
+	new->tex.s = NULL;
+	new->tex.e = NULL;
+	new->tex.w = NULL;
+	while (new->bonust[++i])
+		new->bonust[i] = NULL;
+}
+
 t_struct	ft_init_struct(void)
 {
 	t_struct	new;
-	int			i;
 
-	i = -1;
 	new.time = 0;
 	new.key_up = 0;
 	new.key_down = 0;
@@ -61,17 +77,7 @@ t_struct	ft_init_struct(void)
 	new.map.ea = NULL;
 	new.map.f = -1;
 	new.map.c = -1;
-	new.player.x = 0;
-	new.player.y = 0;
-	new.minim = 0;
-	new.bonus = 0;
-	new.bonusx = 0;
-	new.tex.n = NULL;
-	new.tex.s = NULL;
-	new.tex.e = NULL;
-	new.tex.w = NULL;
-	while (new.bonust[++i])
-		new.bonust[i] = NULL;
+	ft_init_struct2(&new);
 	return (new);
 }
 

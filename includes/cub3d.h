@@ -67,7 +67,7 @@ typedef struct	s_ray {
 	float	tspeed;//vitesse pour tourner
 }				t_ray;
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	int		*addr;
 	int		bits_per_pixel;
