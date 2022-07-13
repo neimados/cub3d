@@ -121,7 +121,7 @@ void	ft_ray_draw_bonus(t_struct *game)
 	i = -1;
 	j = game->ray.drawstart;
 	while (++i < j)//DRAW PLAFOND
-		game->display.addr[i * game->ray.rx + game->ray.x] = 0xFFFFFFFF;
+		game->display.addr[i * game->ray.rx + game->ray.x] = 0x00000000;
 	while (j < game->ray.drawend)//DRAW MURS
 	{
 		game->tex.y = (int)game->tex.pos & (game->tex.size - 1);
@@ -131,7 +131,7 @@ void	ft_ray_draw_bonus(t_struct *game)
 	}
 	while (j < game->ray.ry)//DRAW SOL
 	{
-		game->display.addr[j * game->ray.rx + game->ray.x] = 0xFFFFFFFF;
+		game->display.addr[j * game->ray.rx + game->ray.x] = 0x00000000;
 		j++;
 	}
 }

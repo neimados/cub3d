@@ -41,7 +41,9 @@ char	*ft_strjoin(char *s1, char *s2)
 t_struct	ft_init_struct(void)
 {
 	t_struct	new;
+	int			i;
 
+	i = -1;
 	new.time = 0;
 	new.key_up = 0;
 	new.key_down = 0;
@@ -63,10 +65,13 @@ t_struct	ft_init_struct(void)
 	new.player.y = 0;
 	new.minim = 0;
 	new.bonus = 0;
+	new.bonusx = 0;
 	new.tex.n = NULL;
 	new.tex.s = NULL;
 	new.tex.e = NULL;
 	new.tex.w = NULL;
+	while (new.bonust[++i])
+		new.bonust[i] = NULL;
 	return (new);
 }
 

@@ -52,6 +52,13 @@ int	ft_key_release(int keycode, t_struct *game)
 		else
 			game->minim = 0;
 	}
+	else if (keycode == TOUCHX)
+	{
+		if (game->bonus == 0)
+			game->bonus = 1;
+		else
+			game->bonus = 0;
+	}
 	else if (keycode == ESCAPE)
 		ft_exit_prog(game, "Player escaped.");
 	else
@@ -67,7 +74,7 @@ int	ft_get_keys(t_struct *game)
 	planxtmp = game->ray.planx;
 	dirxtmp = game->ray.dirx;
 	game->time += 1;
-	if (game->time > 100)
+	if (game->time > 300)
 	{
 		if (game->key_turn_right == 1)//ROTATION DROITE
 		{	
@@ -116,6 +123,10 @@ int	ft_get_keys(t_struct *game)
 		if (game->minim == 1)
 			ft_put_minimap(game);
 		mlx_destroy_image(game->mlx, game->display.img);
+		if (game->bonusx >= 3)
+			game->bonusx = 0;
+		else
+			game->bonusx += 1;
 	}
 	return (1);
 }

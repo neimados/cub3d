@@ -115,6 +115,7 @@ typedef struct s_texture
 typedef struct s_struct
 {
 	int			time;
+	int			bonusx;
 	int			key_up;
 	int			key_down;
 	int			key_right;
@@ -128,6 +129,7 @@ typedef struct s_struct
 	char		*maptmp;
 	int			minim;
 	int			bonus;
+	void		*bonust[10];
 	t_map		map;
 	t_data		minimap;
 	t_data		display;
