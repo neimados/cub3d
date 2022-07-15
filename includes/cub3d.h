@@ -36,35 +36,35 @@
 # include <math.h>
 # include <stdio.h>
 
-typedef struct	s_ray {
-	int		rx; //width de la fenetre
-	int		ry; //height de la fenetre
-	double	posx; //position x du joueur
-	double	posy; //position y du joueur
-	double	dirx; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
-	double	diry; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
-	double	planx; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
-	double	plany; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
-	double	raydirx; //calcul de direction x du rayon
-	double	raydiry; //calcul de direction y du rayon
-	double	camerax; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
-	int		mapx; // coordonée x du carré dans lequel est pos
-	int		mapy; // coordonnée y du carré dans lequel est pos
-	double	sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
-	double	sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
-	double	deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
-	double	deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
-	int		stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
-	int		stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
-	int		hit; // 1 si un mur a ete touche, 0 sinon
-	int		side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
-	float	perpwalldist; // distance du joueur au mur
-	int		lineheight; //hauteur de la ligne a dessiner
-	int		drawstart; //position de debut ou il faut dessiner
-	int		drawend; //position de fin ou il faut dessiner
-	int		x; //permet de parcourir tous les rayons
-	float	speed;//vitesse pour avancer
-	float	tspeed;//vitesse pour tourner
+typedef struct s_ray {
+	int		rx;
+	int		ry;
+	double	posx;
+	double	posy;
+	double	dirx;
+	double	diry;
+	double	planx;
+	double	plany;
+	double	raydirx;
+	double	raydiry;
+	double	camerax;
+	int		mapx;
+	int		mapy;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	float	perpwalldist;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
+	int		x;
+	float	speed;
+	float	tspeed;
 }				t_ray;
 
 typedef struct s_data {
@@ -152,7 +152,7 @@ int			counttab(char **tab);
 char		*ft_strdup(const char *str);
 int			ft_atoi(const char *str);
 int			ft_check_digit(char **tmp2);
-int			ft_error(char *str);
+void		ft_error(char *str);
 void		ft_free_tmp(char **tmp);
 int			ft_free_parse(t_struct *game, char **tmp);
 char		*ft_strjoin(char *s1, char *s2);
@@ -174,17 +174,21 @@ void		ft_display(t_struct *game);
 void		ft_init_display(t_struct *game);
 void		ft_init_ray(t_struct *game);
 void		ft_init_textures(t_struct *game);
+void		ft_init_bonus(t_struct *game);
 void		ft_free_all(t_struct *game);
 void		ft_ray_texture(t_struct *game);
 void		ft_ray_draw_bonus(t_struct *game);
 void		ft_ray_texture_bonus(t_struct *game);
-
+void		ft_ray_step(t_struct *game);
 int			ft_get_keys(t_struct *game);
 int			ft_key_release(int keycode, t_struct *game);
 int			ft_key_press(int keycode, t_struct *game);
 void		ft_exit_prog(t_struct *game, char *str);
 int			ft_abort_prog(t_struct *game);
 void		ft_put_minimap(t_struct *game);
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void		ft_left_right(t_struct *game);
+void		ft_move(t_struct *game);
+void		ft_rotate_right(t_struct *game);
+void		ft_rotate_left(t_struct *game);
 
 #endif

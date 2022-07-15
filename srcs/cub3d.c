@@ -31,15 +31,15 @@ int	main(int argc, char **argv)
 
 	game = ft_init_struct();
 	if (argc != 2)
-		return (ft_error("Error\nMap Error\n"));
+		ft_error("Error\nMap Error\n");
 	if (ft_check_map_ext(argv[1]) == 1)
-		return (ft_error("Error\nIncorrect map extension\n"));
+		ft_error("Error\nIncorrect map extension\n");
 	if (ft_gnl(argv[1], &game) == 1)
-		return (ft_error("Error\nFile incorrect\n"));
+		ft_error("Error\nFile incorrect\n");
 	if (ft_check_conf(&game) == 1)
-		return (ft_error("Error\nIncorrect map configuration\n"));
+		ft_error("Error\nIncorrect map configuration\n");
 	if (ft_check_map(&game) == 1)
-		return (ft_error("Error\nMap is not valid\n"));
+		ft_error("Error\nMap is not valid\n");
 	player_pos(&game, 0, 0);
 	game.map.height = ft_map_height(game.map.map);
 	game.map.width = ft_map_width(game.map.map);

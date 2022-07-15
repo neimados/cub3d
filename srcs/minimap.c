@@ -57,13 +57,45 @@ static void	ft_minimap_back(t_struct *game, int x, int y)
 	}
 }
 
+static void	ft_minimap_bonus(t_struct *game, int x, int y)
+{
+	while (x < game->map.width * 10)
+	{
+		while (y < game->map.height * 10)
+		{
+			game->minimap.addr[y * (game->map.width * 10) + x] = 0x007AFE80;
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+	x = 0;
+	while (x < game->map.width * 10)
+	{
+		while (y < game->map.height * 10)
+		{
+			if (y > 0 && y / 10 < game->map.height)
+				if (x > 0 && x / 10 < ft_strlen(game->map.map[y / 10]))
+					if (game->map.map[y / 10][x / 10] == '0')
+						game->minimap.addr[y * (game->map.width
+								* 10) + x] = 0x00000000;
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+}
+
 void	ft_put_minimap(t_struct *game)
 {
 	int	x;
 	int	y;
 
 	ft_init_minimap(game);
-	ft_minimap_back(game, 0, 0);
+	if (game->bonus == 1)
+		ft_minimap_bonus(game, 0, 0);
+	else
+		ft_minimap_back(game, 0, 0);
 	y = -2;
 	x = -2;
 	while (x < 4)

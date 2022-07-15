@@ -12,10 +12,10 @@
 
 #include "../includes/cub3d.h"
 
-int	ft_error(char *str)
+void	ft_error(char *str)
 {
 	write(2, str, ft_strlen(str));
-	return (1);
+	exit(EXIT_FAILURE);
 }
 
 void	ft_free_tmp(char **tmp)
