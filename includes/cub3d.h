@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:46:49 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/29 20:46:02 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/07/20 09:03:43 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define ESCAPE 53
 # define TURN_RIGHT 124
 # define TURN_LEFT 123
-# define TOUCHM 41
+# define TOUCHM 46
 # define TOUCHX 7
 # define TEXTURE 64
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dso <dso@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 11:42:43 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 10:11:37 by dso              ###   ########.fr       */
+/*   Updated: 2022/07/20 09:36:58 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	ft_init_display2(t_struct *game)
 	game->ray.drawend = 0;
 	game->ray.rx = MAP_WIDTH;
 	game->ray.ry = MAP_HEIGHT;
-	game->ray.speed = 0.03;
-	game->ray.tspeed = 0.03;
+	game->ray.speed = 0.09;
+	game->ray.tspeed = 0.09;
 }
 
 void	ft_init_display(t_struct *game)
