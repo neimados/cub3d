@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:32:36 by dso               #+#    #+#             */
-/*   Updated: 2022/06/28 16:04:02 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:38:53 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	player_pos(t_struct *game, int i, int j)
 		}
 		i++;
 	}
+	if (game->player.x == 0 || game->player.y == 0)
+		ft_error("Error\nNo player's position\n");
 }
 
 int	ft_gnl(char *av, t_struct *game)

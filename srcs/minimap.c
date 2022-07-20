@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:33:58 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/29 20:48:46 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:41:26 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,15 @@ static void	ft_minimap_bonus(t_struct *game, int x, int y)
 	}
 }
 
-void	ft_put_minimap(t_struct *game)
+void	ft_put_minimap(t_struct *game, int x, int y)
 {
-	int	x;
-	int	y;
-
+	if (game->map.height > 30 || game->map.width > 42)
+		return ;
 	ft_init_minimap(game);
 	if (game->bonus == 1)
 		ft_minimap_bonus(game, 0, 0);
 	else
 		ft_minimap_back(game, 0, 0);
-	y = -2;
-	x = -2;
 	while (x < 4)
 	{
 		while (y < 4)

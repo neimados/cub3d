@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:56:26 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/06/28 16:03:31 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:41:18 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ft_get_keys(t_struct *game)
 		game->time = 0;
 		ft_display(game);
 		if (game->minim == 1)
-			ft_put_minimap(game);
+			ft_put_minimap(game, -2, -2);
 		mlx_destroy_image(game->mlx, game->display.img);
 		if (game->bonusx >= 3)
 			game->bonusx = 0;

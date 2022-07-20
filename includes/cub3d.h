@@ -6,7 +6,7 @@
 /*   By: dvergobb <dvergobb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:46:49 by dvergobb          #+#    #+#             */
-/*   Updated: 2022/07/20 09:03:43 by dvergobb         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:40:56 by dvergobb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define TOUCHX 7
 # define TEXTURE 64
 
-# define MAP_WIDTH 800
-# define MAP_HEIGHT 600
+# define MAP_WIDTH 1920
+# define MAP_HEIGHT 1200
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -185,7 +185,7 @@ int			ft_key_release(int keycode, t_struct *game);
 int			ft_key_press(int keycode, t_struct *game);
 void		ft_exit_prog(t_struct *game, char *str);
 int			ft_abort_prog(t_struct *game);
-void		ft_put_minimap(t_struct *game);
+void		ft_put_minimap(t_struct *game, int x, int y);
 void		ft_left_right(t_struct *game);
 void		ft_move(t_struct *game);
 void		ft_rotate_right(t_struct *game);
