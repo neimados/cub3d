@@ -25,7 +25,7 @@ void	ft_rotate_left(t_struct *game)
 			- game->ray.diry * sin(game->ray.tspeed);
 		game->ray.diry = dirxtmp * sin(game->ray.tspeed)
 			+ game->ray.diry * cos(game->ray.tspeed);
-		game->ray.planx = game->ray.planx * cos(game->ray.tspeed / 2)
+		game->ray.planx = game->ray.planx * cos(game->ray.tspeed)
 			- game->ray.plany * sin(game->ray.tspeed);
 		game->ray.plany = planxtmp * sin(game->ray.tspeed)
 			+ game->ray.plany * cos(game->ray.tspeed);
